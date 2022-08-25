@@ -1,0 +1,85 @@
+﻿table.tblcss1 
+{
+    border-style: none;
+    border-color: inherit;
+    border-width: 1;
+    width:100%;
+    border-collapse:collapse;
+    position: static;
+    text-align: center;
+}
+        
+table.tblcss1 th 
+{
+	        
+background-color:#000;
+font-size:medium;
+color:#FFF;
+height:30px;
+	        
+	        
+}
+table.tblcss1 td {
+	        
+	font-size:small;
+	background-color:#FFF;
+	height:25px;
+	        
+} 
+
+table.tblcss11
+{
+    border-style: none;
+    border-color: #BBB;
+    border-width: 1;
+    border-collapse:collapse;
+    position: static;
+    text-align: center;
+    width:360px;
+}
+        
+table.tblcss11 th 
+{
+	        
+background-color:#BCC6CC;
+font-size:small;
+color:#000;
+border-color: #BBB;
+	        
+	        
+}
+table.tblcss11 td {
+	        border-color: #BBB;
+	font-size:small;
+	background-color:#FFF;
+	        
+} 
+
+table.tblcss110
+{
+    border-style: none;
+    border-color: inherit;
+    border-width: 1;
+    width:100%;
+    border-collapse:collapse;
+    position: static;
+    text-align: center;
+}
+        
+table.tblcss110 th 
+{
+	        
+background-color:#000;
+font-size:small;
+color:#FFF;
+height:30px;
+	        
+	        
+}
+table.tblcss110 td {
+	        
+	font-size:smaller;
+	
+	height:25px;
+	        
+} 

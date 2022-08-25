@@ -1,0 +1,172 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MotorPostalThirdParty.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head runat="server">
+
+    <title></title>
+    <!--<link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />-->
+
+    <!--<link href="Styles.css" rel="stylesheet" type="text/css" />-->
+    <link href="Style.css" rel="stylesheet" />
+
+    <link type="text/css" href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />	
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"> 
+           
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+
+        .style1
+        {
+            color: #000000;
+            padding: 8px 0px 0px 0px;
+            margin: 0px auto;
+            text-align: center;
+            line-height: normal;
+            /*font-size: small;*/
+        }
+        .title
+        {
+            text-align: center;
+            color: #000000;
+        }
+        .loginDisplay
+        {
+            text-align: center;
+        }
+
+        .menu{
+
+            background-color:#98AFC7;
+            text-align: center;
+            /*list-style:none;
+            display:flex;*/
+            /*padding: 10px 30px;*/
+            color:var(--color-white);
+            text-decoration:none;
+            font-size:15px;
+            
+        }
+        
+        
+        
+    </style>
+
+</head>
+
+    
+<body style ="background-color:#E5E4E2">
+
+    <form runat="server">
+       <div class="page">
+         <div class="title">
+          <div class="header">
+            <div class="menu">
+                
+                
+                <h1 style="text-align:center; margin-left:360 px">
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    E - Certificate Motor Third Party
+                </h1>
+
+                <div id="menu2">
+                    <ul>
+                        <li><a href="buldchild.aspx" runat="server">Bulk</a></li>
+                        <li><a href="Individualchild.aspx" runat="server">Individual</a></li> 
+                    </ul>
+
+                </div>
+
+                
+
+                   
+                    <!--<div class="menu2">
+                    <ul>
+                        <li><a href="#">Bulk</a></li>
+                        <li><a href="#">Individual</a></li>
+                        
+
+                    </ul>
+                    
+                        </div>-->
+
+                    <!--<div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>-->
+
+
+                    
+                    <!--<div class="clear hideSkiplink">
+
+                    <asp:Menu ID="NavigationMenu" DynamicMenuStyle-HorizontalPadding="5px" runat="server"
+                    CssClass="menu" EnableViewState="true" IncludeStyleBlock="true" Orientation="Horizontal"
+                    StaticSubMenuIndent="5px" DynamicHorizontalOffset="2">
+                    <StaticMenuItemStyle Width="150px" />
+                    <DynamicMenuItemStyle ItemSpacing="5px" />
+            
+                    
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/buldchild.aspx" Text="Bulk" Value="Bulk"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Individualchild.aspx" Text="Individual" Value="Individual"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+
+                
+              </div>-->
+
+            <div class="style1"> 
+            <div class="loginDisplay">
+            
+           
+                
+                
+                </div>
+            </div>
+            
+        </div>
+        </div>
+
+        </div>
+
+    
+
+        <div class="main">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"/>
+            
+        </div>
+      
+        <div class="clear">
+
+       </div>
+
+           
+    
+    <!--<div class="footer">
+        
+    </div>-->
+
+       <!--</div>-->
+
+        
+           <!--<div class="style1" >
+          © Sri Lanka Insurance Corporation Ltd. All Rights Reserved. 
+            </div>-->
+        
+    </form>
+</body>
+</html>
