@@ -66,13 +66,6 @@
             text-align: center;
             width: 32px;
         }
-        .auto-style9 {
-            text-align: center;
-            width: 32px;
-        }
-        .auto-style10 {
-            width: 511px;
-        }
         .auto-style11 {
             height: 23px;
         }
@@ -80,7 +73,11 @@
         .auto-style12 {
             margin-top: 2px;
         }
-
+        .grideStyle
+        {
+            border:solid 2px #ff0000;
+            background-color:#4682B4;
+        }
     </style>
 
 
@@ -100,7 +97,7 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style4" style="color:#0000CD" >
-                        <asp:Label ID="Label2" runat="server" Text="Policy No :"></asp:Label>
+                        <asp:Label runat="server" Text="Policy No :"></asp:Label>
                         <asp:TextBox ID="Txtboxpol" runat="server"></asp:TextBox>
                     </td>
                     <td rowspan="3">&nbsp;</td>
@@ -112,7 +109,7 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style5">
-                        <asp:Button ID="Btnsearch" runat="server" Text="SEARCH" CssClass="auto-style12" Height="30px" BackColor="#4682B4" ForeColor="#FFFFFF" OnClick="Btnsearch_Click" />
+                    <asp:Button ID="Btnsearch" runat="server" Text="SEARCH" CssClass="auto-style12" Height="30px" BackColor="#4682B4" ForeColor="#FFFFFF" OnClick="Btnsearch_Click"/>
                     </td>
                 </tr>
             </table>
@@ -165,12 +162,8 @@
                                     <table style="width:100%;">
                                         <tr>
                                             <td>
-                                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="168px" Height="50px">
-                                                    <Columns>
-                                                        <asp:BoundField HeaderText="Action" />
-                                                        <asp:BoundField HeaderText="Date" />
-                                                    </Columns>
-                                                </asp:GridView>
+                                                
+
                                             </td>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
@@ -197,15 +190,58 @@
 
             </asp:Panel>
 
-    
+        <table>
+        <tr>
+          <td>
 
+             <!--<asp:GridView ID="grv_MatchingVehicleNo" runat="server" AutoGenerateColumns="false" Width="304px"
+                        Height="16px">
+                        <Columns>
+<%--                            <asp:TemplateField HeaderText=" Matching Manual PR Nos" HeaderStyle-ForeColor="#ffffff"
+                                HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="manualPRNo" runat="server" NavigateUrl='<%# String.Format("Inquired_Details.aspx?txt_ManualPRNo="+Eval("Manual PR Nos"))%>'
+                                        Text='<%# Eval("Manual PR Nos") %>' HorizontalAlign="Center"></asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>--%>
+                                         <asp:BoundField HeaderText="Audit" DataField="VEHICLE_NOS" SortExpression="Matching Vehicle Nos"
+                                           HeaderStyle-ForeColor="#ffffff" HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false">
+                                            <ItemStyle HorizontalAlign="Center" ForeColor="#000000"></ItemStyle>
+                                        </asp:BoundField>
+                             <asp:TemplateField HeaderText="Date" HeaderStyle-ForeColor="#ffffff"
+                                HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false" ItemStyle-HorizontalAlign="Center">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="receiptNo" runat="server" NavigateUrl='<%# String.Format("Search_By_VehicleNo_3.aspx?txt_ReceiptNo="+Eval("receiptNo"))%>'
+                                        Text='<%# Eval("receiptNo") %>' HorizontalAlign="Center"></asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>-->
+
+
+    <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" EmptyDataText="No Records" CssClass="grideStyle"  Width="70px" Height="50px">
+    <Columns>
+        <asp:BoundField DataField="Action" HeaderText="Contact Name" ItemStyle-Width="150px" />
+        <asp:BoundField DataField="Date" HeaderText="City" ItemStyle-Width="100px" />
+        
+    </Columns>
+    </asp:GridView>
+    <br />
+
+
+
+        </td>
+     </tr>
+</table>
+
+       
         <table __designer:mapid="2227" style="width:100%;">
             <tr __designer:mapid="2228">
                 <td __designer:mapid="2229" class="auto-style11"></td>
             </tr>
             <tr __designer:mapid="222c">
                 <td __designer:mapid="222d" class="loginDisplay">
-                    <asp:Button ID="BtnsendSMS" runat="server" Text="Send SMS" Height="33px" BackColor="#4682B4" ForeColor="#FFFFFF" />
+                    <asp:Button ID="BtnsendSMS" runat="server" Text="Send SMS" Height="33px" BackColor="#4682B4" ForeColor="#FFFFFF" OnClick="Button1_Click" />
                 </td>
             </tr>
         </table>
@@ -213,4 +249,8 @@
     
 
         </fieldset>
+
+   
+       
+
 </asp:Content>

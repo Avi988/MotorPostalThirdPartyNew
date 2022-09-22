@@ -45,7 +45,7 @@
 
         .auto-style7 {
             text-align: center;
-            width: 628px;
+            width: 531px;
             height: 499px;
             margin-left: 64px;
         }

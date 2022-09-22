@@ -13,14 +13,14 @@ namespace MotorPostalThirdParty
         OraDB db = new OraDB();
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
+            //DataSet ds = new DataSet();
 
-            string sql = "select brcod, brnam from genpay.branch order by brnam ";
-            ds = db.getrows(sql, ds);
-            DropDownBranch.DataSource = ds.Tables[0];
-            DropDownBranch.DataTextField = "brnam";
-            DropDownBranch.DataValueField = "brcod";
-            DropDownBranch.DataBind();
+            //string sql = "select brcod, brnam from genpay.branch order by brnam ";
+            //ds = db.getrows(sql, ds);
+            //DropDownBranch.DataSource = ds.Tables[0];
+            //DropDownBranch.DataTextField = "brnam";
+            //DropDownBranch.DataValueField = "brcod";
+            //DropDownBranch.DataBind();
 
 
 

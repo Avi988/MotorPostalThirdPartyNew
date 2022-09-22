@@ -14,7 +14,7 @@
 
     <script  language="javascript" type="text/javascript">
 
-         $(function () {
+        $(function () {
         today = new Date();
         var month, day, year;
         year = today.getFullYear();
