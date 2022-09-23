@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Bulk.aspx.cs" Inherits="MotorPostalThirdParty.Bulk1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Bulk.aspx.cs" Inherits="MotorPostalThirdParty.Bulk" %>
 
 <!DOCTYPE html>
 

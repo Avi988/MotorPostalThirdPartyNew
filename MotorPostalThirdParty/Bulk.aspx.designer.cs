@@ -10,7 +10,7 @@
 namespace MotorPostalThirdParty {
     
     
-    public partial class Bulk1 {
+    public partial class Bulk {
         
         /// <summary>
         /// form1 control.
