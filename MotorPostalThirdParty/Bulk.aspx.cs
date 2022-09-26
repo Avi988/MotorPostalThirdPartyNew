@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace MotorPostalThirdParty
 {
-    public partial class Bulk1 : System.Web.UI.Page
+    public partial class Bulk : System.Web.UI.Page
     {
         OraDB db = new OraDB();
         protected void Page_Load(object sender, EventArgs e)

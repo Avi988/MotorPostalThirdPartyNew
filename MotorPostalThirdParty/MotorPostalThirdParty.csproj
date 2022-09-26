@@ -70,7 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Bulk.aspx" />
     <Content Include="Individual.aspx" />
     <Content Include="css\custom-theme\images\animated-overlay.gif" />
     <Content Include="css\custom-theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -127,13 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\MTPolicy.cs" />
-    <Compile Include="Bulk.aspx.cs">
-      <DependentUpon>Bulk.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Bulk.aspx.designer.cs">
-      <DependentUpon>Bulk.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="DTO\ThirdPartyCard.cs" />
     <Compile Include="Individual.aspx.cs">
       <DependentUpon>Individual.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
