@@ -18,6 +18,8 @@ namespace MotorPostalThirdParty.DTO
         public string RefNo { get; set; }
         public double RsValue { get; set; }
 
+        
+
         // Similarly all the properties of the card
     }
 }
