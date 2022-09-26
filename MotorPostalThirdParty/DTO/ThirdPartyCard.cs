@@ -30,10 +30,7 @@ namespace MotorPostalThirdParty.DTO
 
         }
 
-        public ThirdPartyCard(string PolicyNumber,string VehicleNumber,string NICNumber,string ChassisNo,string Name,string Address1, string Address2,string PeriodOfCover,string Place,string RefNo,double RsValue,string SN,string SNDate, string CoverList)
-        {
-            
-        }
+        
 
 
 
