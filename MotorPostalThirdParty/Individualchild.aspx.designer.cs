@@ -130,6 +130,15 @@ namespace MotorPostalThirdParty {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
+        /// GridView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
         /// grv_MatchingVehicleNo control.
         /// </summary>
         /// <remarks>
@@ -137,15 +146,6 @@ namespace MotorPostalThirdParty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grv_MatchingVehicleNo;
-        
-        /// <summary>
-        /// gvCustomers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCustomers;
         
         /// <summary>
         /// BtnsendSMS control.

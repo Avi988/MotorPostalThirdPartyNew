@@ -159,28 +159,17 @@
                             <tr>
                                 <td>
                                     <asp:Label ID="Label3" runat="server" Text="Audit Trail : " style="color:#0000CD"></asp:Label>
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                
-
-                                            </td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="loginDisplay">&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                    </table>
                                 </td>
-                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2">
+
+                                    <!--<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" EmptyDataText="No Records" Height="57px" Width="139px">
+                                        <Columns>
+                                            <asp:BoundField HeaderText="Action" />
+                                            <asp:BoundField HeaderText="Date" />
+                                        </Columns>
+                                    </asp:GridView>-->
+
+                                </td>
                             </tr>
                         </table>
                     </td>
@@ -194,7 +183,7 @@
         <tr>
           <td>
 
-             <!--<asp:GridView ID="grv_MatchingVehicleNo" runat="server" AutoGenerateColumns="false" Width="304px"
+             <asp:GridView ID="grv_MatchingVehicleNo" runat="server" AutoGenerateColumns="false" Width="304px"
                         Height="16px">
                         <Columns>
 <%--                            <asp:TemplateField HeaderText=" Matching Manual PR Nos" HeaderStyle-ForeColor="#ffffff"
@@ -216,23 +205,17 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
-                    </asp:GridView>-->
+                    </asp:GridView>
 
 
-    <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" EmptyDataText="No Records" CssClass="grideStyle"  Width="70px" Height="50px">
-    <Columns>
-        <asp:BoundField DataField="Action" HeaderText="Contact Name" ItemStyle-Width="150px" />
-        <asp:BoundField DataField="Date" HeaderText="City" ItemStyle-Width="100px" />
-        
-    </Columns>
-    </asp:GridView>
+   
     <br />
 
 
 
-        </td>
-     </tr>
-</table>
+          </td>
+       </tr>
+    </table>
 
        
         <table __designer:mapid="2227" style="width:100%;">
@@ -246,7 +229,6 @@
             </tr>
         </table>
 
-    
 
         </fieldset>
 
