@@ -29,6 +29,7 @@ namespace MotorPostalThirdParty.DTO
         ThirdPartyCard cd = new ThirdPartyCard();
 
         OracleConnection oconn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
+        
 
         public ThirdPartyCard()
         {
@@ -87,7 +88,9 @@ namespace MotorPostalThirdParty.DTO
                     Address2 = row[6].ToString().Trim();
                     PeriodOfCover = row[7].ToString().Trim();
                     Place = row[8].ToString().Trim();
-                    
+                    RsValue = Convert.ToDouble(row[9].ToString().Trim());
+
+
                 }
 
             }
@@ -99,11 +102,113 @@ namespace MotorPostalThirdParty.DTO
             return mesg;
         }
 
-        public string GetRefInfo(string RefNo)
+        //Get Ref Details
+        public string GetRefinfo(string RefNo)
         {
+            string mesg = "success";
+            try
+            {
+                if (oconn.State != ConnectionState.Open)
+                {
+                    oconn.Open();
+                }
+
+                DataSet ds = new DataSet();
+
+
+                string sql = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS";
+
+
+
+                using (OracleCommand cmd = new OracleCommand(sql, oconn))
+                {
+
+                    OracleDataAdapter data = new OracleDataAdapter();
+                    data.SelectCommand = cmd;
+                    data.SelectCommand.Parameters.AddWithValue("RsSN", SN);
+                    ds.Clear();
+                    data.Fill(ds);
+                    //gridVw.DataSource = ds.Tables[0];
+                    //gridVw.DataBind();
+                }
+            }
+            catch (Exception e)
+            {
+
+                foreach(DataRow row in dt.Rows)
+                {
+                    RefNo = row[0].ToString().Trim();
+                }
+
+
+            }
+            finally
+            {
+                oconn.Close();
+            }
+
+            return mesg;
+
+
+
+
 
         }
 
+        public string GetSNInfo(string SN)
+        {
+            string mesg = "success";
+            try
+            {
+                if (oconn.State != ConnectionState.Open)
+                {
+                    oconn.Open();
+                }
+
+                DataSet ds = new DataSet();
+
+
+                string sql = "SELECT a.BRANCH_CODE, a.SEQ_NO, to_char(b.DATCOMM, 'dd/mm/yyyy'), to_char(b.DATEXIT, 'dd/mm/yyyy')" +
+                             "FROM THIRDPARTY.CERTIFICATE_CADE_SEQ a, THIRDPARTY.POLICY_INFORMATION b";
+
+
+
+                using (OracleCommand cmd = new OracleCommand(sql, oconn))
+                {
+
+                    OracleDataAdapter data = new OracleDataAdapter();
+                    data.SelectCommand = cmd;
+                    data.SelectCommand.Parameters.AddWithValue("RefNo", RefNo);
+                    ds.Clear();
+                    data.Fill(ds);
+                    //gridVw.DataSource = ds.Tables[0];
+                    //gridVw.DataBind();
+                }
+            }
+            catch (Exception e)
+            {
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    SN = row[0].ToString().Trim();
+                    SNDate = row[1].ToString().Trim();
+                }
+
+
+            }
+            finally
+            {
+                oconn.Close();
+            }
+
+            return mesg;
+        }
+
+
+        
+           
+
+        }
 
 
         // Similarly all the properties of the card
