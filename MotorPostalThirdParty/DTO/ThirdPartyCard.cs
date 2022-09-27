@@ -249,7 +249,6 @@ namespace MotorPostalThirdParty.DTO
                 {
                     SN = row[0].ToString().Trim();
                     SNDate = row[1].ToString().Trim();
-
                 }
 
 
