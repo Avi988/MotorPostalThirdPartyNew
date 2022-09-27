@@ -49,6 +49,7 @@ namespace MotorPostalThirdParty.DTO
                 DataSet ds = new DataSet();
                 
 
+
                 string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
                             "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b";
 
@@ -155,7 +156,63 @@ namespace MotorPostalThirdParty.DTO
 
         }
 
-        public string GetSNInfo(string SN)
+        //public string GetSNInfo(string SN)
+        //{
+        //    string mesg = "success";
+        //    try
+        //    {
+        //        if (oconn.State != ConnectionState.Open)
+        //        {
+        //            oconn.Open();
+        //        }
+
+        //        DataSet ds = new DataSet();
+
+
+        //        string sql = "SELECT a.BRANCH_CODE, a.SEQ_NO, to_char(b.DATCOMM, 'dd/mm/yyyy'), to_char(b.DATEXIT, 'dd/mm/yyyy')" +
+        //                     "FROM THIRDPARTY.CERTIFICATE_CADE_SEQ a, THIRDPARTY.POLICY_INFORMATION b";
+
+
+
+        //        using (OracleCommand cmd = new OracleCommand(sql, oconn))
+        //        {
+
+        //            OracleDataAdapter data = new OracleDataAdapter();
+        //            data.SelectCommand = cmd;
+        //            data.SelectCommand.Parameters.AddWithValue("RefNo", RefNo);
+        //            ds.Clear();
+        //            data.Fill(ds);
+        //            //gridVw.DataSource = ds.Tables[0];
+        //            //gridVw.DataBind();
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        foreach (DataRow row in dt.Rows)
+        //        {
+        //            SN = row[0].ToString().Trim();
+        //            SNDate = row[1].ToString().Trim();
+        //        }
+
+
+        //    }
+        //    finally
+        //    {
+        //        oconn.Close();
+        //    }
+
+        //    return mesg;
+        //}
+
+
+ 
+        //}
+
+
+        // Similarly all the properties of the card
+
+        public string GetSNValues(string SN)
         {
             string mesg = "success";
             try
@@ -168,8 +225,8 @@ namespace MotorPostalThirdParty.DTO
                 DataSet ds = new DataSet();
 
 
-                string sql = "SELECT a.BRANCH_CODE, a.SEQ_NO, to_char(b.DATCOMM, 'dd/mm/yyyy'), to_char(b.DATEXIT, 'dd/mm/yyyy')" +
-                             "FROM THIRDPARTY.CERTIFICATE_CADE_SEQ a, THIRDPARTY.POLICY_INFORMATION b";
+                string sql = "select c.netprm, a.tariff_code, b.branch_code,b.seq_no,a.effective_date,a.covers" +
+                             "from thirdparty.tblbasicrate a, thirdparty.certificate_cade_seq b, thirdparty.policy_information c";
 
 
 
@@ -178,7 +235,7 @@ namespace MotorPostalThirdParty.DTO
 
                     OracleDataAdapter data = new OracleDataAdapter();
                     data.SelectCommand = cmd;
-                    data.SelectCommand.Parameters.AddWithValue("RefNo", RefNo);
+                    data.SelectCommand.Parameters.AddWithValue("RsSN", SN);
                     ds.Clear();
                     data.Fill(ds);
                     //gridVw.DataSource = ds.Tables[0];
@@ -192,6 +249,7 @@ namespace MotorPostalThirdParty.DTO
                 {
                     SN = row[0].ToString().Trim();
                     SNDate = row[1].ToString().Trim();
+
                 }
 
 
@@ -202,15 +260,13 @@ namespace MotorPostalThirdParty.DTO
             }
 
             return mesg;
-        }
 
-
-        
-           
 
         }
 
 
-        // Similarly all the properties of the card
+
+
+
     }
 }
