@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="App_Code\MTPolicy.cs" />
     <Content Include="App_Code\PolicyDetails.cs" />
+    <Content Include="App_Code\RefDetails.cs" />
     <Compile Include="DTO\ThirdPartyCard.cs" />
     <Compile Include="Individual.aspx.cs">
       <DependentUpon>Individual.aspx</DependentUpon>

@@ -11,14 +11,30 @@ namespace MotorPostalThirdParty.App_Code
 {
     public class PolicyDetails
     {
+
+        public string PolicyNumber { get; set; }
+        public string VehicleNumber { get; set; }
+        public string ChassisNo { get; set; }
+        public string ProAddress1 { get; set; }
+        public string ProAddress2 { get; set; }
+        public string TarCode { get; set; }
+        public string NetPrm { get; set; }
+        public string ProName { get; set; }
+        public string DatComm { get; set; }
+        public string DatExit { get; set; }
+        public string BarCode { get; set; }
+
+        PolicyDetails pd = new PolicyDetails();
+
         OracleConnection oconn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
 
-        public ThirdPartyCard GetThirdPartyCardDetails(string policyNo, int policyYear)
+        public PolicyDetails GetPolicyDetails(string policyNo, int policyYear)
         {
-            ThirdPartyCard res = new ThirdPartyCard();
+            PolicyDetails pd = new PolicyDetails();
 
 
             string mesg = "success";
+
             try
             {
                 if (oconn.State != ConnectionState.Open)
@@ -39,14 +55,37 @@ namespace MotorPostalThirdParty.App_Code
                 {
 
                     OracleDataAdapter data = new OracleDataAdapter();
+
                     data.SelectCommand = cmd;
                     data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
+                    data.SelectCommand.Parameters.AddWithValue("VEHNO", VehicleNumber);
+                    data.SelectCommand.Parameters.AddWithValue("CHASNO", ChassisNo);
+                    data.SelectCommand.Parameters.AddWithValue("TARCODE", TarCode);
+                    data.SelectCommand.Parameters.AddWithValue("NETPRM", NetPrm);
+                    data.SelectCommand.Parameters.AddWithValue("PI_PRONAME1", ProName);
+                    data.SelectCommand.Parameters.AddWithValue("PI_BRACODE", BarCode);
+                    data.SelectCommand.Parameters.AddWithValue("PI_PROADDR1", ProAddress1);
+                    data.SelectCommand.Parameters.AddWithValue("PI_PROADDR2", ProAddress2);
+                    data.SelectCommand.Parameters.AddWithValue("DATCOMM", DatComm);
+                    data.SelectCommand.Parameters.AddWithValue("DATEXIT", DatExit);
+
+
                     ds.Clear();
                     data.Fill(ds);
 
                     foreach (DataRow row in dt.Rows)
-                    { 
-                        res.PolicyNumber = policyNo;
+                    {
+                        pd.PolicyNumber = policyNo;
+                        pd.VehicleNumber = VehicleNumber;
+                        pd.ChassisNo = ChassisNo;
+                        pd.TarCode = TarCode;
+                        pd.NetPrm = NetPrm;
+                        pd.ProName = ProName;
+                        pd.BarCode = BarCode;
+                        pd.ProAddress1 = ProAddress1;
+                        pd.ProAddress2 = ProAddress2;
+                        pd.DatComm = DatComm;
+                        pd.DatExit = DatExit;
 
 
                         //PolicyNumber = row[0].ToString().Trim();
@@ -66,8 +105,8 @@ namespace MotorPostalThirdParty.App_Code
 
 
                     data.SelectCommand.Parameters.Clear();
-                     sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
-                           "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b";
+                    sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
+                          "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b";
 
                     data = new OracleDataAdapter();
                     data.SelectCommand = cmd;
@@ -78,9 +117,11 @@ namespace MotorPostalThirdParty.App_Code
 
 
                 }
+
             }
             catch (Exception e)
             {
+
                 //gridVw.DataSource = null;
                 //gridVw.DataBind();
                 mesg = "Error occured while retrieving policy details";
@@ -89,20 +130,26 @@ namespace MotorPostalThirdParty.App_Code
 
                 DataTable dt = ds.Tables[0];
 
-               
 
             }
             finally
             {
                 oconn.Close();
             }
-
             return mesg;
+
+
+
+
+
         }
 
 
-            return res;
 
-        }
+
+
+
+
+
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.OracleClient;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace MotorPostalThirdParty.DTO
 {
@@ -36,7 +37,7 @@ namespace MotorPostalThirdParty.DTO
 
         }
 
-        public string getPolinfo(string PolicyNumber, string VehicleNumber, string ChassisNo, string PeriodOfCover, string RefNo, string Name, string Address1, string Address2)
+        public string getPolinfo(string PolicyNumber, string VehicleNumber, string ChassisNo, string PeriodOfCover, string RefNo, string Name, string Address1, string Address2, GridView gridView1)
         {
             string mesg = "success";
             try
@@ -63,14 +64,14 @@ namespace MotorPostalThirdParty.DTO
                     data.SelectCommand.Parameters.AddWithValue("POLICYNO", PolicyNumber);
                     ds.Clear();
                     data.Fill(ds);
-                    //gridVw.DataSource = ds.Tables[0];
-                    //gridVw.DataBind();
+                    gridView1.DataSource = ds.Tables[0];
+                    gridView1.DataBind();
                 }
             }
             catch (Exception e)
             {
-                //gridVw.DataSource = null;
-                //gridVw.DataBind();
+                gridView1.DataSource = null;
+                gridView1.DataBind();
                   mesg = "Error occured while retrieving policy details";
                 //log logger = new log();
                 //logger.write_log("Failed at TRV_Policy_Info - getPolicyInfo: " + e.ToString());
@@ -104,57 +105,57 @@ namespace MotorPostalThirdParty.DTO
         }
 
         //Get Ref Details
-        public string GetRefinfo(string RefNo)
-        {
-            string mesg = "success";
-            try
-            {
-                if (oconn.State != ConnectionState.Open)
-                {
-                    oconn.Open();
-                }
+        //public string GetRefinfo(string RefNo)
+        //{
+        //    string mesg = "success";
+        //    try
+        //    {
+        //        if (oconn.State != ConnectionState.Open)
+        //        {
+        //            oconn.Open();
+        //        }
 
-                DataSet ds = new DataSet();
-
-
-                string sql = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS";
+        //        DataSet ds = new DataSet();
 
 
-
-                using (OracleCommand cmd = new OracleCommand(sql, oconn))
-                {
-
-                    OracleDataAdapter data = new OracleDataAdapter();
-                    data.SelectCommand = cmd;
-                    data.SelectCommand.Parameters.AddWithValue("RsSN", SN);
-                    ds.Clear();
-                    data.Fill(ds);
-                    //gridVw.DataSource = ds.Tables[0];
-                    //gridVw.DataBind();
-                }
-            }
-            catch (Exception e)
-            {
-
-                foreach(DataRow row in dt.Rows)
-                {
-                    RefNo = row[0].ToString().Trim();
-                }
-
-
-            }
-            finally
-            {
-                oconn.Close();
-            }
-
-            return mesg;
+        //        string sql = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS";
 
 
 
+        //        using (OracleCommand cmd = new OracleCommand(sql, oconn))
+        //        {
+
+        //            OracleDataAdapter data = new OracleDataAdapter();
+        //            data.SelectCommand = cmd;
+        //            data.SelectCommand.Parameters.AddWithValue("RsSN", SN);
+        //            ds.Clear();
+        //            data.Fill(ds);
+        //            //gridVw.DataSource = ds.Tables[0];
+        //            //gridVw.DataBind();
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        foreach(DataRow row in dt.Rows)
+        //        {
+        //            RefNo = row[0].ToString().Trim();
+        //        }
 
 
-        }
+        //    }
+        //    finally
+        //    {
+        //        oconn.Close();
+        //    }
+
+        //    return mesg;
+
+
+
+
+
+        //}
 
         //public string GetSNInfo(string SN)
         //{
