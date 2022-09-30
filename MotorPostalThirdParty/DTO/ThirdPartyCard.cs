@@ -48,11 +48,12 @@ namespace MotorPostalThirdParty.DTO
                 }
 
                 DataSet ds = new DataSet();
-                
+
 
 
                 string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
-                            "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b";
+                             "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b" +
+                             "where a.POLICYNO = 'A/52/0000536/028/P'";
 
 
 
@@ -226,8 +227,7 @@ namespace MotorPostalThirdParty.DTO
                 DataSet ds = new DataSet();
 
 
-                string sql = "select c.netprm, a.tariff_code, b.branch_code,b.seq_no,a.effective_date,a.covers" +
-                             "from thirdparty.tblbasicrate a, thirdparty.certificate_cade_seq b, thirdparty.policy_information c";
+                string sql = 
 
 
 

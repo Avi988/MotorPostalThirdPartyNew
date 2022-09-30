@@ -26,10 +26,7 @@ namespace MotorPostalThirdParty
             DropDownBranch.DataValueField = "brcod";
             DropDownBranch.DataBind();
 
-            
-
-            
-
+           
         }
 
         public string getPolicyInfo(string polNo, GridView gridVw)
