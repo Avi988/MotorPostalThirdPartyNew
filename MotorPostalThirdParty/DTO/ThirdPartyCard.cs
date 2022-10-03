@@ -227,7 +227,10 @@ namespace MotorPostalThirdParty.DTO
                 DataSet ds = new DataSet();
 
 
-                string sql = 
+                string sql = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime, c.covers" +
+                             "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c " +
+                             "where b.branch_code = '" + branch_code + "';
+                             
 
 
 

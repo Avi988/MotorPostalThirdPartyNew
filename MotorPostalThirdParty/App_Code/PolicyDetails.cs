@@ -58,6 +58,7 @@ namespace MotorPostalThirdParty.App_Code
                     OracleDataAdapter data = new OracleDataAdapter();
 
                     data.SelectCommand = cmd;
+
                     data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
                     data.SelectCommand.Parameters.AddWithValue("VEHNO", VehicleNumber);
                     data.SelectCommand.Parameters.AddWithValue("CHASNO", ChassisNo);
@@ -107,11 +108,13 @@ namespace MotorPostalThirdParty.App_Code
 
                     data.SelectCommand.Parameters.Clear();
                     sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
-                          "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b";
+                          "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b" +
+                          "where a.POLICYNO = b.pi_barcode";
 
                     data = new OracleDataAdapter();
                     data.SelectCommand = cmd;
                     data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
+                    data.SelectCommand.Parameters.AddWithValue("PI_BRACODE", BarCode); 
                     ds.Clear();
                     data.Fill(ds);
 
@@ -137,6 +140,7 @@ namespace MotorPostalThirdParty.App_Code
             {
                 oconn.Close();
             }
+
             return mesg;
 
 
