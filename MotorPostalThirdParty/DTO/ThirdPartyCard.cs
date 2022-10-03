@@ -39,6 +39,7 @@ namespace MotorPostalThirdParty.DTO
 
         public string getPolinfo(string PolicyNumber, string VehicleNumber, string ChassisNo, string PeriodOfCover, string RefNo, string Name, string Address1, string Address2, GridView gridView1)
         {
+            DataSet ds = new DataSet();
             string mesg = "success";
             try
             {
@@ -47,7 +48,7 @@ namespace MotorPostalThirdParty.DTO
                     oconn.Open();
                 }
 
-                DataSet ds = new DataSet();
+               
 
 
 
@@ -214,7 +215,7 @@ namespace MotorPostalThirdParty.DTO
 
         // Similarly all the properties of the card
 
-        public string GetSNValues(string SN)
+        public string GetSNValues(string branch_code)
         {
             string mesg = "success";
             try
@@ -229,7 +230,7 @@ namespace MotorPostalThirdParty.DTO
 
                 string sql = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime, c.covers" +
                              "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c " +
-                             "where b.branch_code = '" + branch_code + "';
+                             "where b.branch_code = '" + branch_code + "'";
                              
 
 
