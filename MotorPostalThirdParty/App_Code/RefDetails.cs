@@ -54,7 +54,7 @@ namespace MotorPostalThirdParty.App_Code
             catch (Exception e)
             {
 
-                foreach (DataRow row in re.Rows)
+                foreach (DataRow row in pd.Rows)
                 {
 
                     re.PoCode = PoCode;
