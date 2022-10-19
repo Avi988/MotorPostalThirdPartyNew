@@ -45,9 +45,10 @@ namespace MotorPostalThirdParty.DTO
 
 
 
+
         public ThirdPartyCard()
         {
-
+            
         }
 
         public string getPolinfo(string PolicyNumber, string VehicleNumber, string ChassisNo, string PeriodOfCover, string RefNo, string Name, string Address1, string Address2, GridView gridView1)
@@ -402,13 +403,11 @@ namespace MotorPostalThirdParty.DTO
         }
 
         
-
         public string getPolicyDetails(string policyNo,string policyYear)
         {
             OracleCommand cmd = new OracleCommand();
             string mesg = "success";
-            
-            
+    
             DataSet ds = new DataSet();
 
            
@@ -435,7 +434,7 @@ namespace MotorPostalThirdParty.DTO
 
                     while (reader.Read())
                     {
-                       
+
                         data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
                         data.SelectCommand.Parameters.AddWithValue("VEHNO", VehicleNumber);
                         data.SelectCommand.Parameters.AddWithValue("NICNUMBER", NICNumber);
@@ -486,10 +485,6 @@ namespace MotorPostalThirdParty.DTO
                         pd.DatComm = DatComm;
                         pd.DatExit = DatExit;
 
-                       
-
-
-
                     }
 
                 }
@@ -497,7 +492,7 @@ namespace MotorPostalThirdParty.DTO
             }
             catch(Exception e)
             {
-
+                
             }
             finally
             {
