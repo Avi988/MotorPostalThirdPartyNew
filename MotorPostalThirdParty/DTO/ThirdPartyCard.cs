@@ -405,13 +405,13 @@ namespace MotorPostalThirdParty.DTO
 
         public string getPolicyDetails(string policyNo,string policyYear)
         {
-
-            string mesg = "success";
-
             OracleCommand cmd = new OracleCommand();
+            string mesg = "success";
+            
+            
             DataSet ds = new DataSet();
 
-
+           
             try
             {
                 if (oconn.State != ConnectionState.Open)
@@ -422,7 +422,7 @@ namespace MotorPostalThirdParty.DTO
                 string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
                              "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b, CLIENTDB.PERSONAL_CUSTOMER c" +
                              "where a.POLICYNO = '" + policyNo + "'";
-
+                
                 cmd = new OracleCommand(sql, oconn);
 
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -448,6 +448,7 @@ namespace MotorPostalThirdParty.DTO
                         data.SelectCommand.Parameters.AddWithValue("PI_PROADDR2", Address2);
                         data.SelectCommand.Parameters.AddWithValue("DATCOMM", DatComm);
                         data.SelectCommand.Parameters.AddWithValue("DATEXIT", DatExit);
+
                         mesg = "This Policy Details are Invalid";
 
                         //Customer_cvl_status = Convert.ToInt64(reader[0].ToString().Trim());
@@ -484,6 +485,10 @@ namespace MotorPostalThirdParty.DTO
                         pd.Address2 = Address2;
                         pd.DatComm = DatComm;
                         pd.DatExit = DatExit;
+
+                       
+
+
 
                     }
 
