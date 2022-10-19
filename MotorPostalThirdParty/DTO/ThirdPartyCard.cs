@@ -25,6 +25,12 @@ namespace MotorPostalThirdParty.DTO
         public string SN { get; set; }
         public string SNDate { get; set; }
         public string CoverList { get; set; }
+        public string TarCode { get; set; }
+        public string NetPrm { get; set; }
+        public string DatComm { get; set; }
+        public string DatExit { get; set; }
+        public string BarCode { get; set; }
+        public string ProName { get; set; }
 
         
         OracleConnection oconn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
@@ -33,6 +39,8 @@ namespace MotorPostalThirdParty.DTO
         ThirdPartyCard cd = new ThirdPartyCard();
         ThirdPartyCard re = new ThirdPartyCard();
         ThirdPartyCard ds = new ThirdPartyCard();
+        ThirdPartyCard pd = new ThirdPartyCard();
+
 
 
         public ThirdPartyCard()
@@ -254,7 +262,7 @@ namespace MotorPostalThirdParty.DTO
             catch (Exception e)
             {
 
-                DataTable dt = ds.Tables[1];
+                DataTable dt = ds.Tables[0];
 
                 foreach (DataRow row in dt.Rows)
                 {
@@ -394,6 +402,113 @@ namespace MotorPostalThirdParty.DTO
 
 
         }
+
+        
+
+        public getPolicyDetails(string policyNo int policyYear)
+        {
+
+            string mesg = "success";
+            OracleCommand cmd = new OracleCommand();
+            DataSet ds = new DataSet();
+
+
+            try
+            {
+                if (oconn.State != ConnectionState.Open)
+                {
+                    oconn.Open();
+                }
+
+                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
+                             "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b, CLIENTDB.PERSONAL_CUSTOMER c" +
+                             "where a.POLICYNO = '" + policyNo + "'";
+
+                cmd = new OracleCommand(sql, oconn);
+
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                using (OracleCommand cmd = new OracleCommand(sql, oconn))
+                {
+                    OracleDataAdapter data = new OracleDataAdapter();
+
+                    data.SelectCommand = cmd;
+
+                    while (reader.Read())
+                    {
+                       
+                        data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
+                        data.SelectCommand.Parameters.AddWithValue("VEHNO", VehicleNumber);
+                        data.SelectCommand.Parameters.AddWithValue("NICNUMBER", NICNumber);
+                        data.SelectCommand.Parameters.AddWithValue("CHASNO", ChassisNo);
+                        data.SelectCommand.Parameters.AddWithValue("TARCODE", TarCode);
+                        data.SelectCommand.Parameters.AddWithValue("NETPRM", NetPrm);
+                        data.SelectCommand.Parameters.AddWithValue("PI_PRONAME1", ProName);
+                        data.SelectCommand.Parameters.AddWithValue("PI_BRACODE", BarCode);
+                        data.SelectCommand.Parameters.AddWithValue("PI_PROADDR1", Address1);
+                        data.SelectCommand.Parameters.AddWithValue("PI_PROADDR2", Address2);
+                        data.SelectCommand.Parameters.AddWithValue("DATCOMM", DatComm);
+                        data.SelectCommand.Parameters.AddWithValue("DATEXIT", DatExit);
+                        mesg = "This Policy Details are Invalid";
+
+                        //Customer_cvl_status = Convert.ToInt64(reader[0].ToString().Trim());
+                        pd.PolicyNumber = reader[0].ToString().Trim();
+                        pd.VehicleNumber = reader[1].ToString().Trim();
+                        pd.NICNumber = reader[2].ToString().Trim();
+                        pd.ChassisNo = reader[3].ToString().Trim();
+                        pd.TarCode = reader[4].ToString().Trim();
+                        pd.NetPrm = reader[5].ToString().Trim();
+                        pd.ProName = reader[6].ToString().Trim();
+                        pd.BarCode = reader[7].ToString().Trim();
+                        pd.Address1 = reader[8].ToString().Trim();
+                        pd.Address2 = reader[9].ToString().Trim();
+                        pd.DatComm = reader[10].ToString().Trim();
+                        pd.DatExit = reader[11].ToString().Trim();
+
+
+                    }
+
+                    ds.Clear();
+                    data.Fill(ds);
+
+                    foreach (DataRow row in data.ro)
+                    {
+                        pd.PolicyNumber = policyNo;
+                        pd.VehicleNumber = VehicleNumber;
+                        pd.NICNumber = NICNumber;
+                        pd.ChassisNo = ChassisNo;
+                        pd.TarCode = TarCode;
+                        pd.NetPrm = NetPrm;
+                        pd.ProName = ProName;
+                        pd.BarCode = BarCode;
+                        pd.Address1 = Address1;
+                        pd.Address2 = Address2;
+                        pd.DatComm = DatComm;
+                        pd.DatExit = DatExit;
+
+                    }
+
+
+
+                }
+
+            }
+            catch(Exception e)
+            {
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                oconn.Close();
+            }
+
+            return mesg;
+            
+        }
+
+
+
 
 
     }

@@ -145,8 +145,6 @@ namespace MotorPostalThirdParty.App_Code
         //    return mesg;
 
 
-
-
         public PolicyDetails GetPolicyDetails(string policyNo, int policyYear)
         {
             PolicyDetails pd = new PolicyDetails();
@@ -161,9 +159,6 @@ namespace MotorPostalThirdParty.App_Code
                 {
                     oconn.Open();
                 }
-
-
-
 
 
                 //string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
