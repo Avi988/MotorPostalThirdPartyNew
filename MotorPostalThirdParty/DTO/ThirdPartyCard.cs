@@ -27,10 +27,13 @@ namespace MotorPostalThirdParty.DTO
         public string CoverList { get; set; }
 
         
-        ThirdPartyCard cd = new ThirdPartyCard();
-
         OracleConnection oconn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
-        
+
+
+        ThirdPartyCard cd = new ThirdPartyCard();
+        ThirdPartyCard re = new ThirdPartyCard();
+        ThirdPartyCard ds = new ThirdPartyCard();
+
 
         public ThirdPartyCard()
         {
@@ -82,7 +85,7 @@ namespace MotorPostalThirdParty.DTO
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    
+
                     PolicyNumber = row[0].ToString().Trim();
                     VehicleNumber = row[1].ToString().Trim();
                     NICNumber = row[2].ToString().Trim();
@@ -93,6 +96,7 @@ namespace MotorPostalThirdParty.DTO
                     PeriodOfCover = row[7].ToString().Trim();
                     Place = row[8].ToString().Trim();
                     RsValue = Convert.ToDouble(row[9].ToString().Trim());
+
 
 
                 }
@@ -250,6 +254,8 @@ namespace MotorPostalThirdParty.DTO
             catch (Exception e)
             {
 
+                DataTable dt = ds.Tables[1];
+
                 foreach (DataRow row in dt.Rows)
                 {
                     SN = row[0].ToString().Trim();
@@ -268,8 +274,126 @@ namespace MotorPostalThirdParty.DTO
 
         }
 
+        public string GetRefinfo(string PoCode,string BookNo,string RecNo)
+        {
+            string mesg = "success";
+            try
+            {
+                if (oconn.State != ConnectionState.Open)
+                {
+                    oconn.Open();
+                }
+
+                DataSet ds = new DataSet();
 
 
+                string sql = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS WHERE POLICY_NO ='A/52/0929893/133/P'";
+
+
+
+                using (OracleCommand cmd = new OracleCommand(sql, oconn))
+                {
+                    OracleDataAdapter data = new OracleDataAdapter();
+                    data.SelectCommand = cmd;
+                    data.SelectCommand.Parameters.AddWithValue("PO_CODE", PoCode);
+                    data.SelectCommand.Parameters.AddWithValue("BOOK_NO", BookNo);
+                    data.SelectCommand.Parameters.AddWithValue("REC_NO", RecNo);
+
+
+                    mesg = "This Ref Details is Invalid";
+                    ds.Clear();
+                    data.Fill(ds);
+
+                    //gridVw.DataSource = ds.Tables[0];
+                    //gridVw.DataBind();
+                }
+            
+            }
+            catch(Exception e)
+            {
+                foreach (DataRow row in pd.Rows)
+                {
+                    
+                    //re.PoCode = PoCode;
+                    //re.BookNo = BookNo;
+                    //re.RecNo = RecNo;
+
+                    PoCode = row[0].ToString().Trim();
+                    BookNo = row[1].ToString().Trim();
+                    RecNo = row[2].ToString().Trim();
+
+
+                    //RefNo = row[0].ToString().Trim();
+                }
+
+
+
+
+            }
+            finally
+            {
+                oconn.Close();
+            }
+
+            return mesg;
+        }
+
+        
+        public string getCoversList(string tarcode,string policyno)
+        {
+            string mesg = "success";
+            try
+            {
+                if (oconn.State != ConnectionState.Open)
+                {
+                    oconn.Open();
+                }
+
+                DataSet ds = new DataSet();
+
+
+                string sql = "SELECT POLICYNO,TARCODE FROM THIRDPARTY.POLICY_INFORMATION WHERE POLICYNO = 'A/52/0000536/028/P'";
+
+
+
+                using (OracleCommand cmd = new OracleCommand(sql, oconn))
+                {
+                    OracleDataAdapter data = new OracleDataAdapter();
+                    data.SelectCommand = cmd;
+                    data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyno);
+                    data.SelectCommand.Parameters.AddWithValue("TARCODE", tarcode);
+
+
+                    mesg = "This Cover List is Invalid";
+                    ds.Clear();
+                    data.Fill(ds);
+
+                    //gridVw.DataSource = ds.Tables[0];
+                    //gridVw.DataBind();
+                }
+
+
+            }
+            catch(Exception e)
+            {
+
+                foreach(DataRow row in pd.Rows)
+                { 
+                policyno = row[0].ToString().Trim();
+                tarcode = row[1].ToString().Trim();
+                }
+            }
+            finally
+            {
+                oconn.Close();
+
+            }
+
+            return mesg;
+
+
+
+        }
 
 
     }
