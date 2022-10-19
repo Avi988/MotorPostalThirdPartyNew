@@ -31,8 +31,10 @@ namespace MotorPostalThirdParty.DTO
         public string DatExit { get; set; }
         public string BarCode { get; set; }
         public string ProName { get; set; }
-
         
+
+
+
         OracleConnection oconn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
 
 
@@ -58,10 +60,6 @@ namespace MotorPostalThirdParty.DTO
                 {
                     oconn.Open();
                 }
-
-               
-
-
 
                 string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
                              "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b" +
@@ -262,13 +260,13 @@ namespace MotorPostalThirdParty.DTO
             catch (Exception e)
             {
 
-                DataTable dt = ds.Tables[0];
+                //DataTable dt = ds.Tables[0];
 
-                foreach (DataRow row in dt.Rows)
-                {
-                    SN = row[0].ToString().Trim();
-                    SNDate = row[1].ToString().Trim();
-                }
+                //foreach (DataRow row in dt.Rows)
+                //{
+                //    SN = row[0].ToString().Trim();
+                //    SNDate = row[1].ToString().Trim();
+                //}
 
 
             }
@@ -405,10 +403,11 @@ namespace MotorPostalThirdParty.DTO
 
         
 
-        public getPolicyDetails(string policyNo int policyYear)
+        public string getPolicyDetails(string policyNo,string policyYear)
         {
 
             string mesg = "success";
+
             OracleCommand cmd = new OracleCommand();
             DataSet ds = new DataSet();
 
@@ -488,8 +487,6 @@ namespace MotorPostalThirdParty.DTO
 
                     }
 
-
-
                 }
 
             }
@@ -506,10 +503,6 @@ namespace MotorPostalThirdParty.DTO
             return mesg;
             
         }
-
-
-
-
 
     }
 }
