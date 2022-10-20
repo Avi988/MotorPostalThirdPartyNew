@@ -460,44 +460,20 @@ namespace MotorPostalThirdParty.DTO
 
                 }
 
-                //foreach (DataRow row in data.ro)
-                //{
-                //    pd.PolicyNumber = policyNo;
-                //    pd.VehicleNumber = VehicleNumber;
-                //    pd.NICNumber = NICNumber;
-                //    pd.ChassisNo = ChassisNo;
-                //    pd.TarCode = TarCode;
-                //    pd.NetPrm = NetPrm;
-                //    pd.ProName = ProName;
-                //    pd.BarCode = BarCode;
-                //    pd.Address1 = Address1;
-                //    pd.Address2 = Address2;
-                //    pd.DatComm = DatComm;
-                //    pd.DatExit = DatExit;
-
-                //}
-
-
-
-
+                
 
                 // Next Sql
-                string sql1 = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime, c.covers" +
-                             "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c " +
-                             "where b.branch_code = '" + branch_code + "'";
+                string sql1 = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime,d.po_code, d.book_no, d.rec_no,c.covers" +
+                              "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c, postoffice.policy_transactions d" +
+                              "where b.branch_code = '" + branch_code + "'";
 
-
-                string sql2 = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS";
-
-                string sql3 = "SELECT CUSTOMER_ID, COMPANY_NAME" +
+                string sql2 = "SELECT CUSTOMER_ID, COMPANY_NAME" +
                               "FROM CLIENTDB.CORPORATE_CUSTOMER" +
                               "WHERE CUSTOMER_ID = '" + Cus_ID + "'" +
                               "AND COMPANY_NAME = '" + Company_Reg_No + "'";
 
-                string sql4 = "SELECT pi_bracode FROM thirdparty.personal_information" +
+                string sql3 = "SELECT pi_bracode FROM thirdparty.personal_information" +
                               "where pi_bracode = '133'";
-
-
 
             }
             catch (Exception e)
