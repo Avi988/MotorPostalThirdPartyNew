@@ -419,10 +419,12 @@ namespace MotorPostalThirdParty.DTO
                     oconn.Open();
                 }
 
-                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
+                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy'),b.PI_BRACODE" +
                              "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b, CLIENTDB.PERSONAL_CUSTOMER c" +
                              "where a.POLICYNO = '" + policyNo + "'" +
-                             "and Policy Year = '" + policyYear + "'";
+                             "and Policy Year = '" + policyYear + "'" +
+                             "and pi_bracode = '133'";
+
 
                 //cmd = new OracleCommand(sql, oconn);
 
@@ -471,9 +473,6 @@ namespace MotorPostalThirdParty.DTO
                               "FROM CLIENTDB.CORPORATE_CUSTOMER" +
                               "WHERE CUSTOMER_ID = '" + Cus_ID + "'" +
                               "AND COMPANY_NAME = '" + Company_Reg_No + "'";
-
-                string sql3 = "SELECT pi_bracode FROM thirdparty.personal_information" +
-                              "where pi_bracode = '133'";
 
             }
             catch (Exception e)
