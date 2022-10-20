@@ -481,6 +481,8 @@ namespace MotorPostalThirdParty.DTO
 
                 }
 
+
+
                 
                 string sql1 = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime,d.po_code, d.book_no, d.rec_no,c.covers" +
                               "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c, postoffice.policy_transactions d" +
