@@ -41,7 +41,7 @@ namespace MotorPostalThirdParty.DTO
         ThirdPartyCard cd = new ThirdPartyCard();
         ThirdPartyCard re = new ThirdPartyCard();
         ThirdPartyCard ds = new ThirdPartyCard();
-        ThirdPartyCard pd = new ThirdPartyCard();
+        
 
 
 
@@ -226,60 +226,60 @@ namespace MotorPostalThirdParty.DTO
 
         // Similarly all the properties of the card
 
-        public string GetSNValues(string branch_code)
-        {
-            string mesg = "success";
-            try
-            {
-                if (oconn.State != ConnectionState.Open)
-                {
-                    oconn.Open();
-                }
+        //public string GetSNValues(string branch_code)
+        //{
+        //    string mesg = "success";
+        //    try
+        //    {
+        //        if (oconn.State != ConnectionState.Open)
+        //        {
+        //            oconn.Open();
+        //        }
 
-                DataSet ds = new DataSet();
+        //        DataSet ds = new DataSet();
 
 
-                string sql = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime, c.covers" +
-                             "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c " +
-                             "where b.branch_code = '" + branch_code + "'";
+        //        string sql = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime, c.covers" +
+        //                     "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c " +
+        //                     "where b.branch_code = '" + branch_code + "'";
                              
 
 
 
-                using (OracleCommand cmd = new OracleCommand(sql, oconn))
-                {
+        //        using (OracleCommand cmd = new OracleCommand(sql, oconn))
+        //        {
 
-                    OracleDataAdapter data = new OracleDataAdapter();
-                    data.SelectCommand = cmd;
-                    data.SelectCommand.Parameters.AddWithValue("RsSN", SN);
-                    ds.Clear();
-                    data.Fill(ds);
-                    //gridVw.DataSource = ds.Tables[0];
-                    //gridVw.DataBind();
-                }
-            }
-            catch (Exception e)
-            {
+        //            OracleDataAdapter data = new OracleDataAdapter();
+        //            data.SelectCommand = cmd;
+        //            data.SelectCommand.Parameters.AddWithValue("RsSN", SN);
+        //            ds.Clear();
+        //            data.Fill(ds);
+        //            //gridVw.DataSource = ds.Tables[0];
+        //            //gridVw.DataBind();
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
 
-                //DataTable dt = ds.Tables[0];
+        //        //DataTable dt = ds.Tables[0];
 
-                //foreach (DataRow row in dt.Rows)
-                //{
-                //    SN = row[0].ToString().Trim();
-                //    SNDate = row[1].ToString().Trim();
-                //}
-
-
-            }
-            finally
-            {
-                oconn.Close();
-            }
-
-            return mesg;
+        //        //foreach (DataRow row in dt.Rows)
+        //        //{
+        //        //    SN = row[0].ToString().Trim();
+        //        //    SNDate = row[1].ToString().Trim();
+        //        //}
 
 
-        }
+        //    }
+        //    finally
+        //    {
+        //        oconn.Close();
+        //    }
+
+        //    return mesg;
+
+
+        //}
 
         public string GetRefinfo(string PoCode,string BookNo,string RecNo)
         {
@@ -346,70 +346,71 @@ namespace MotorPostalThirdParty.DTO
         }
 
         
-        public string getCoversList(string tarcode,string policyno)
-        {
-            string mesg = "success";
-            try
-            {
-                if (oconn.State != ConnectionState.Open)
-                {
-                    oconn.Open();
-                }
+        //public string getCoversList(string tarcode,string policyno)
+        //{
+        //    string mesg = "success";
+        //    try
+        //    {
+        //        if (oconn.State != ConnectionState.Open)
+        //        {
+        //            oconn.Open();
+        //        }
 
-                DataSet ds = new DataSet();
-
-
-                string sql = "SELECT POLICYNO,TARCODE FROM THIRDPARTY.POLICY_INFORMATION WHERE POLICYNO = 'A/52/0000536/028/P'";
+        //        DataSet ds = new DataSet();
 
 
-
-                using (OracleCommand cmd = new OracleCommand(sql, oconn))
-                {
-                    OracleDataAdapter data = new OracleDataAdapter();
-                    data.SelectCommand = cmd;
-                    data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyno);
-                    data.SelectCommand.Parameters.AddWithValue("TARCODE", tarcode);
-
-
-                    mesg = "This Cover List is Invalid";
-                    ds.Clear();
-                    data.Fill(ds);
-
-                    //gridVw.DataSource = ds.Tables[0];
-                    //gridVw.DataBind();
-                }
-
-
-            }
-            catch(Exception e)
-            {
-
-                foreach(DataRow row in pd.Rows)
-                { 
-                policyno = row[0].ToString().Trim();
-                tarcode = row[1].ToString().Trim();
-                }
-            }
-            finally
-            {
-                oconn.Close();
-
-            }
-
-            return mesg;
+        //        string sql = "SELECT POLICYNO,TARCODE FROM THIRDPARTY.POLICY_INFORMATION WHERE POLICYNO = 'A/52/0000536/028/P'";
 
 
 
-        }
+        //        using (OracleCommand cmd = new OracleCommand(sql, oconn))
+        //        {
+        //            OracleDataAdapter data = new OracleDataAdapter();
+        //            data.SelectCommand = cmd;
+        //            data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyno);
+        //            data.SelectCommand.Parameters.AddWithValue("TARCODE", tarcode);
+
+
+        //            mesg = "This Cover List is Invalid";
+        //            ds.Clear();
+        //            data.Fill(ds);
+
+        //            //gridVw.DataSource = ds.Tables[0];
+        //            //gridVw.DataBind();
+        //        }
+
+
+        //    }
+        //    catch(Exception e)
+        //    {
+
+        //        foreach(DataRow row in pd.Rows)
+        //        { 
+        //        policyno = row[0].ToString().Trim();
+        //        tarcode = row[1].ToString().Trim();
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        oconn.Close();
+
+        //    }
+
+        //    return mesg;
+
+
+
+        //}
 
         
-        public ThirdPartyCard getPolicyDetails(string policyNo,string policyYear)
+        public ThirdPartyCard getPolicyDetails(string policyNo,string policyYear,string branch_code,string Cus_ID,string Company_Reg_No)
         {
             //OracleCommand cmd = new OracleCommand();
             string mesg = "success";
     
             DataSet ds = new DataSet();
             ThirdPartyCard pd = new ThirdPartyCard();
+            
 
             try
             {
@@ -420,8 +421,9 @@ namespace MotorPostalThirdParty.DTO
 
                 string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
                              "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b, CLIENTDB.PERSONAL_CUSTOMER c" +
-                             "where a.POLICYNO = '" + policyNo + "' and -- Policy Year";
-                
+                             "where a.POLICYNO = '" + policyNo + "'" +
+                             "and Policy Year = '" + policyYear + "'";
+
                 //cmd = new OracleCommand(sql, oconn);
 
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -435,20 +437,6 @@ namespace MotorPostalThirdParty.DTO
                     while (reader.Read())
                     {
 
-                        //data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
-                        //data.SelectCommand.Parameters.AddWithValue("VEHNO", VehicleNumber);
-                        //data.SelectCommand.Parameters.AddWithValue("NICNUMBER", NICNumber);
-                        //data.SelectCommand.Parameters.AddWithValue("CHASNO", ChassisNo);
-                        //data.SelectCommand.Parameters.AddWithValue("TARCODE", TarCode);
-                        //data.SelectCommand.Parameters.AddWithValue("NETPRM", NetPrm);
-                        //data.SelectCommand.Parameters.AddWithValue("PI_PRONAME1", ProName);
-                        //data.SelectCommand.Parameters.AddWithValue("PI_BRACODE", BarCode);
-                        //data.SelectCommand.Parameters.AddWithValue("PI_PROADDR1", Address1);
-                        //data.SelectCommand.Parameters.AddWithValue("PI_PROADDR2", Address2);
-                        //data.SelectCommand.Parameters.AddWithValue("DATCOMM", DatComm);
-                        //data.SelectCommand.Parameters.AddWithValue("DATEXIT", DatExit);
-
-                        mesg = "This Policy Details are Invalid";
 
                         //Customer_cvl_status = Convert.ToInt64(reader[0].ToString().Trim());
                         pd.PolicyNumber = reader[0].ToString().Trim();
@@ -464,55 +452,61 @@ namespace MotorPostalThirdParty.DTO
                         pd.DatComm = reader[10].ToString().Trim();
                         pd.DatExit = reader[11].ToString().Trim();
 
+                        mesg = "This Policy Details are Invalid";
+
                         break;
 
                     }
 
-                    //ds.Clear();
-                    //data.Fill(ds);
+                }
 
-                    //foreach (DataRow row in data.ro)
-                    //{
-                    //    pd.PolicyNumber = policyNo;
-                    //    pd.VehicleNumber = VehicleNumber;
-                    //    pd.NICNumber = NICNumber;
-                    //    pd.ChassisNo = ChassisNo;
-                    //    pd.TarCode = TarCode;
-                    //    pd.NetPrm = NetPrm;
-                    //    pd.ProName = ProName;
-                    //    pd.BarCode = BarCode;
-                    //    pd.Address1 = Address1;
-                    //    pd.Address2 = Address2;
-                    //    pd.DatComm = DatComm;
-                    //    pd.DatExit = DatExit;
+                //foreach (DataRow row in data.ro)
+                //{
+                //    pd.PolicyNumber = policyNo;
+                //    pd.VehicleNumber = VehicleNumber;
+                //    pd.NICNumber = NICNumber;
+                //    pd.ChassisNo = ChassisNo;
+                //    pd.TarCode = TarCode;
+                //    pd.NetPrm = NetPrm;
+                //    pd.ProName = ProName;
+                //    pd.BarCode = BarCode;
+                //    pd.Address1 = Address1;
+                //    pd.Address2 = Address2;
+                //    pd.DatComm = DatComm;
+                //    pd.DatExit = DatExit;
 
-                    foreach (DataRow row in data.ro)
-                    {
-                        pd.PolicyNumber = policyNo;
-                        pd.VehicleNumber = VehicleNumber;
-                        pd.NICNumber = NICNumber;
-                        pd.ChassisNo = ChassisNo;
-                        pd.TarCode = TarCode;
-                        pd.NetPrm = NetPrm;
-                        pd.ProName = ProName;
-                        pd.BarCode = BarCode;
-                        pd.Address1 = Address1;
-                        pd.Address2 = Address2;
-                        pd.DatComm = DatComm;
-                        pd.DatExit = DatExit;
+                //}
 
-                    }
+
+
+
 
                 // Next Sql
+                string sql1 = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime, c.covers" +
+                             "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c " +
+                             "where b.branch_code = '" + branch_code + "'";
+
+
+                string sql2 = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS";
+
+                string sql3 = "SELECT CUSTOMER_ID, COMPANY_NAME" +
+                              "FROM CLIENTDB.CORPORATE_CUSTOMER" +
+                              "WHERE CUSTOMER_ID = '" + Cus_ID + "'" +
+                              "AND COMPANY_NAME = '" + Company_Reg_No + "'";
+
+                string sql4 = "SELECT pi_bracode FROM thirdparty.personal_information" +
+                              "where pi_bracode = '133'";
+
+
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                
+
             }
             finally
             {
-                cmd.Dispose();
+
                 oconn.Close();
             }
 
