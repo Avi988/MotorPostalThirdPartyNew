@@ -103,8 +103,16 @@ namespace MotorPostalThirdParty.DTO
                     PeriodOfCover = row[7].ToString().Trim();
                     Place = row[8].ToString().Trim();
                     RsValue = Convert.ToDouble(row[9].ToString().Trim());
-
-
+                    RefNo = row[10].ToString().Trim();
+                    SN = row[11].ToString().Trim();
+                    SNDate = row[12].ToString().Trim();
+                    CoverList = row[13].ToString().Trim();
+                    TarCode = row[14].ToString().Trim();
+                    NetPrm = row[15].ToString().Trim();
+                    DatComm = row[16].ToString().Trim();
+                    DatExit = row[17].ToString().Trim();
+                    BarCode = row[18].ToString().Trim();
+                    ProName = row[19].ToString().Trim();
 
                 }
 
@@ -453,6 +461,17 @@ namespace MotorPostalThirdParty.DTO
                         pd.Address2 = reader[9].ToString().Trim();
                         pd.DatComm = reader[10].ToString().Trim();
                         pd.DatExit = reader[11].ToString().Trim();
+                        pd.Name = reader[12].ToString().Trim();
+                        pd.PeriodOfCover = reader[13].ToString().Trim();
+                        pd.Place = reader[13].ToString().Trim();
+                        pd.RefNo = reader[14].ToString().Trim();
+                        //pd.RsValue = Convert.ToDouble(row[15].ToString().Trim());
+                        pd.SN = reader[16].ToString().Trim();
+                        pd.SNDate = reader[17].ToString().Trim();
+                        pd.CoverList = reader[18].ToString().Trim();
+                        pd.ProName = reader[19].ToString().Trim();
+
+
 
                         mesg = "This Policy Details are Invalid";
 
