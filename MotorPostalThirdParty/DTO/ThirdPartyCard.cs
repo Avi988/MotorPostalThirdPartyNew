@@ -403,14 +403,14 @@ namespace MotorPostalThirdParty.DTO
         }
 
         
-        public string getPolicyDetails(string policyNo,string policyYear)
+        public ThirdPartyCard getPolicyDetails(string policyNo,string policyYear)
         {
-            OracleCommand cmd = new OracleCommand();
+            //OracleCommand cmd = new OracleCommand();
             string mesg = "success";
     
             DataSet ds = new DataSet();
+            ThirdPartyCard pd = new ThirdPartyCard();
 
-           
             try
             {
                 if (oconn.State != ConnectionState.Open)
@@ -420,9 +420,9 @@ namespace MotorPostalThirdParty.DTO
 
                 string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
                              "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b, CLIENTDB.PERSONAL_CUSTOMER c" +
-                             "where a.POLICYNO = '" + policyNo + "'";
+                             "where a.POLICYNO = '" + policyNo + "' and -- Policy Year";
                 
-                cmd = new OracleCommand(sql, oconn);
+                //cmd = new OracleCommand(sql, oconn);
 
                 OracleDataReader reader = cmd.ExecuteReader();
 
@@ -435,18 +435,18 @@ namespace MotorPostalThirdParty.DTO
                     while (reader.Read())
                     {
 
-                        data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
-                        data.SelectCommand.Parameters.AddWithValue("VEHNO", VehicleNumber);
-                        data.SelectCommand.Parameters.AddWithValue("NICNUMBER", NICNumber);
-                        data.SelectCommand.Parameters.AddWithValue("CHASNO", ChassisNo);
-                        data.SelectCommand.Parameters.AddWithValue("TARCODE", TarCode);
-                        data.SelectCommand.Parameters.AddWithValue("NETPRM", NetPrm);
-                        data.SelectCommand.Parameters.AddWithValue("PI_PRONAME1", ProName);
-                        data.SelectCommand.Parameters.AddWithValue("PI_BRACODE", BarCode);
-                        data.SelectCommand.Parameters.AddWithValue("PI_PROADDR1", Address1);
-                        data.SelectCommand.Parameters.AddWithValue("PI_PROADDR2", Address2);
-                        data.SelectCommand.Parameters.AddWithValue("DATCOMM", DatComm);
-                        data.SelectCommand.Parameters.AddWithValue("DATEXIT", DatExit);
+                        //data.SelectCommand.Parameters.AddWithValue("POLICYNO", policyNo);
+                        //data.SelectCommand.Parameters.AddWithValue("VEHNO", VehicleNumber);
+                        //data.SelectCommand.Parameters.AddWithValue("NICNUMBER", NICNumber);
+                        //data.SelectCommand.Parameters.AddWithValue("CHASNO", ChassisNo);
+                        //data.SelectCommand.Parameters.AddWithValue("TARCODE", TarCode);
+                        //data.SelectCommand.Parameters.AddWithValue("NETPRM", NetPrm);
+                        //data.SelectCommand.Parameters.AddWithValue("PI_PRONAME1", ProName);
+                        //data.SelectCommand.Parameters.AddWithValue("PI_BRACODE", BarCode);
+                        //data.SelectCommand.Parameters.AddWithValue("PI_PROADDR1", Address1);
+                        //data.SelectCommand.Parameters.AddWithValue("PI_PROADDR2", Address2);
+                        //data.SelectCommand.Parameters.AddWithValue("DATCOMM", DatComm);
+                        //data.SelectCommand.Parameters.AddWithValue("DATEXIT", DatExit);
 
                         mesg = "This Policy Details are Invalid";
 
@@ -464,29 +464,31 @@ namespace MotorPostalThirdParty.DTO
                         pd.DatComm = reader[10].ToString().Trim();
                         pd.DatExit = reader[11].ToString().Trim();
 
+                        break;
 
                     }
 
-                    ds.Clear();
-                    data.Fill(ds);
+                    //ds.Clear();
+                    //data.Fill(ds);
+
+                    //foreach (DataRow row in data.ro)
+                    //{
+                    //    pd.PolicyNumber = policyNo;
+                    //    pd.VehicleNumber = VehicleNumber;
+                    //    pd.NICNumber = NICNumber;
+                    //    pd.ChassisNo = ChassisNo;
+                    //    pd.TarCode = TarCode;
+                    //    pd.NetPrm = NetPrm;
+                    //    pd.ProName = ProName;
+                    //    pd.BarCode = BarCode;
+                    //    pd.Address1 = Address1;
+                    //    pd.Address2 = Address2;
+                    //    pd.DatComm = DatComm;
+                    //    pd.DatExit = DatExit;
 
                     foreach (DataRow row in data.ro)
                     {
-
-                        //pd.PolicyNumber = PolicyNumber;
-                        //pd.VehicleNumber = VehicleNumber;
-                        //pd.NICNumber = NICNumber;
-                        //pd.ChassisNo = ChassisNo;
-                        //pd.TarCode = TarCode;
-                        //pd.NetPrm = NetPrm;
-                        //pd.ProName = ProName;
-                        //pd.BarCode = BarCode;
-                        //pd.Address1 = Address1;
-                        //pd.Address2 = Address2;
-                        //pd.DatComm = DatComm;
-                        //pd.DatExit = DatExit;
-
-                        pd.PolicyNumber = PolicyNumber;
+                        pd.PolicyNumber = policyNo;
                         pd.VehicleNumber = VehicleNumber;
                         pd.NICNumber = NICNumber;
                         pd.ChassisNo = ChassisNo;
@@ -498,12 +500,10 @@ namespace MotorPostalThirdParty.DTO
                         pd.Address2 = Address2;
                         pd.DatComm = DatComm;
                         pd.DatExit = DatExit;
-                        
-
 
                     }
 
-                }
+                // Next Sql
 
             }
             catch(Exception e)
