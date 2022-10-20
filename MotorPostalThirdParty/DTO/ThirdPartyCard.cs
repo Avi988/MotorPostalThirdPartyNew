@@ -281,69 +281,69 @@ namespace MotorPostalThirdParty.DTO
 
         //}
 
-        public string GetRefinfo(string PoCode,string BookNo,string RecNo)
-        {
-            string mesg = "success";
-            try
-            {
-                if (oconn.State != ConnectionState.Open)
-                {
-                    oconn.Open();
-                }
+        //public string GetRefinfo(string PoCode,string BookNo,string RecNo)
+        //{
+        //    string mesg = "success";
+        //    try
+        //    {
+        //        if (oconn.State != ConnectionState.Open)
+        //        {
+        //            oconn.Open();
+        //        }
 
-                DataSet ds = new DataSet();
-
-
-                string sql = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS WHERE POLICY_NO ='A/52/0929893/133/P'";
+        //        DataSet ds = new DataSet();
 
 
-
-                using (OracleCommand cmd = new OracleCommand(sql, oconn))
-                {
-                    OracleDataAdapter data = new OracleDataAdapter();
-                    data.SelectCommand = cmd;
-                    data.SelectCommand.Parameters.AddWithValue("PO_CODE", PoCode);
-                    data.SelectCommand.Parameters.AddWithValue("BOOK_NO", BookNo);
-                    data.SelectCommand.Parameters.AddWithValue("REC_NO", RecNo);
+        //        string sql = "SELECT PO_CODE,BOOK_NO,REC_NO FROM POSTOFFICE.POLICY_TRANSACTIONS WHERE POLICY_NO ='A/52/0929893/133/P'";
 
 
-                    mesg = "This Ref Details is Invalid";
-                    ds.Clear();
-                    data.Fill(ds);
 
-                    //gridVw.DataSource = ds.Tables[0];
-                    //gridVw.DataBind();
-                }
+        //        using (OracleCommand cmd = new OracleCommand(sql, oconn))
+        //        {
+        //            OracleDataAdapter data = new OracleDataAdapter();
+        //            data.SelectCommand = cmd;
+        //            data.SelectCommand.Parameters.AddWithValue("PO_CODE", PoCode);
+        //            data.SelectCommand.Parameters.AddWithValue("BOOK_NO", BookNo);
+        //            data.SelectCommand.Parameters.AddWithValue("REC_NO", RecNo);
+
+
+        //            mesg = "This Ref Details is Invalid";
+        //            ds.Clear();
+        //            data.Fill(ds);
+
+        //            //gridVw.DataSource = ds.Tables[0];
+        //            //gridVw.DataBind();
+        //        }
             
-            }
-            catch(Exception e)
-            {
-                foreach (DataRow row in pd.Rows)
-                {
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        foreach (DataRow row in pd.Rows)
+        //        {
                     
-                    //re.PoCode = PoCode;
-                    //re.BookNo = BookNo;
-                    //re.RecNo = RecNo;
+        //            //re.PoCode = PoCode;
+        //            //re.BookNo = BookNo;
+        //            //re.RecNo = RecNo;
 
-                    PoCode = row[0].ToString().Trim();
-                    BookNo = row[1].ToString().Trim();
-                    RecNo = row[2].ToString().Trim();
-
-
-                    //RefNo = row[0].ToString().Trim();
-                }
+        //            PoCode = row[0].ToString().Trim();
+        //            BookNo = row[1].ToString().Trim();
+        //            RecNo = row[2].ToString().Trim();
 
 
+        //            //RefNo = row[0].ToString().Trim();
+        //        }
 
 
-            }
-            finally
-            {
-                oconn.Close();
-            }
 
-            return mesg;
-        }
+
+        //    }
+        //    finally
+        //    {
+        //        oconn.Close();
+        //    }
+
+        //    return mesg;
+        //}
 
         
         //public string getCoversList(string tarcode,string policyno)
@@ -463,8 +463,6 @@ namespace MotorPostalThirdParty.DTO
                 }
 
                 
-
-                // Next Sql
                 string sql1 = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime,d.po_code, d.book_no, d.rec_no,c.covers" +
                               "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c, postoffice.policy_transactions d" +
                               "where b.branch_code = '" + branch_code + "'";
