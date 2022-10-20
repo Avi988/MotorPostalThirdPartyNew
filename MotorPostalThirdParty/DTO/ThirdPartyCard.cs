@@ -472,7 +472,21 @@ namespace MotorPostalThirdParty.DTO
 
                     foreach (DataRow row in data.ro)
                     {
-                        pd.PolicyNumber = policyNo;
+
+                        //pd.PolicyNumber = PolicyNumber;
+                        //pd.VehicleNumber = VehicleNumber;
+                        //pd.NICNumber = NICNumber;
+                        //pd.ChassisNo = ChassisNo;
+                        //pd.TarCode = TarCode;
+                        //pd.NetPrm = NetPrm;
+                        //pd.ProName = ProName;
+                        //pd.BarCode = BarCode;
+                        //pd.Address1 = Address1;
+                        //pd.Address2 = Address2;
+                        //pd.DatComm = DatComm;
+                        //pd.DatExit = DatExit;
+
+                        pd.PolicyNumber = PolicyNumber;
                         pd.VehicleNumber = VehicleNumber;
                         pd.NICNumber = NICNumber;
                         pd.ChassisNo = ChassisNo;
@@ -484,6 +498,8 @@ namespace MotorPostalThirdParty.DTO
                         pd.Address2 = Address2;
                         pd.DatComm = DatComm;
                         pd.DatExit = DatExit;
+                        
+
 
                     }
 
