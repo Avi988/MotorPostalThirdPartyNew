@@ -62,12 +62,11 @@ namespace MotorPostalThirdParty.DTO
                     oconn.Open();
                 }
 
-                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
-                             "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b" +
-                             "where a.POLICYNO = 'A/52/0000536/028/P'" +
-                             "and b.pi_entdate >= To_date('01-01-2022','dd-MM-yyyy')" +
-                             "order by b.pi_entdate"; 
-
+                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'DD/MON/YYYY'),to_char(a.DATEXIT, 'DD/MON/YYYY'),b.PI_ENTDATE" +
+                            "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b" +
+                            "where a.POLICYNO = 'A/52/0000536/028/P'" +
+                            "and b.pi_entdate >= To_date('01-01-2022', 'dd-MM-yyyy')" +
+                            "order by b.pi_entdate";
 
 
                 using (OracleCommand cmd = new OracleCommand(sql, oconn))
@@ -429,7 +428,7 @@ namespace MotorPostalThirdParty.DTO
                     oconn.Open();
                 }
 
-                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy'),b.PI_BRACODE" +
+                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'DD/MM/YYYY'),to_char(a.DATEXIT, 'DD/MM/YYYY'),b.PI_BRACODE" +
                              "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b, CLIENTDB.PERSONAL_CUSTOMER c" +
                              "where a.POLICYNO = '" + policyNo + "'" +
                              "and Policy Year = '" + policyYear + "'" +
@@ -500,7 +499,7 @@ namespace MotorPostalThirdParty.DTO
             }
             catch (Exception e)
             {
-                mesg = "This Policy Period is Invalid";
+                mesg = "This Policy Detials are Invalid";
             }
             finally
             {

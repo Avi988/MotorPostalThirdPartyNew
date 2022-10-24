@@ -129,7 +129,7 @@
                 <tr>
                     <td class="auto-style7">&nbsp;</td>
                     <td class="auto-style6">
-                        <asp:Label ID="LblMobile" runat="server" Text="Mobile:" style="color:#0000CD"></asp:Label>
+                        <asp:Label ID="LblMobile" runat="server" Text="Customer Mobile:" style="color:#0000CD"></asp:Label>
                         <asp:Label ID="LabelMobi" runat="server" Text=""></asp:Label>
                         &nbsp;<table style="width:100%;">
                             <tr>
