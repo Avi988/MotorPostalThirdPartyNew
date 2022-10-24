@@ -192,35 +192,130 @@ namespace MotorPostalThirdParty
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            GridView gridView = (GridView)Panel2.FindControl("GridView1");
-            string msg = getAuditDate(gridView);
+            //GridView gridView = (GridView)Panel2.FindControl("GridView1");
+            //string msg = getAuditDate(gridView);
+
+            //if (Polmsg.Text.Trim() != "")
+            //{ 
+            //    if (msg != "success")
+            //    {
+            //        GridView1.EmptyDataText = msg;
+            //    }
+
+               
+
+
+            //Polmsg.Text = "This policy Period is Invalid";
+            //}
+
+            //MotorPostalThirdParty polInfo = new TRV_Policy_Info();
+            //if (txt_ref.Text.Trim() != "" || txt_PP.Text.Trim() != "")
+            //{
+
+            //    string mesg = polInfo.getPolicyInfo(txt_ref.Text.Trim(), txt_PP.Text.Trim(), GridView1);
+
+            //    if (mesg != "success")
+            //    {
+            //        GridView1.EmptyDataText = mesg;
+            //    }
+
+            //    Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            //    dic.Add("polNo", txt_ref.Text.Trim().ToString());
+            //    dic.Add("ppNo", txt_PP.Text.Trim().ToString());
+
+
+            //    string mesg1 = polInfo.getDateInfo(txt_PP.Text.Trim().ToString(), txt_ref.Text.Trim().ToString(), GridView1);
+            //    if (mesg1 != "success")
+            //    {
+
+            //        //GridView1.EmptyDataText = mesg1;
+            //        //Fieldset1.Attributes.Add("style", "display:none");
+
+            //        GridView1.DataSource = null;
+            //        GridView1.DataBind();
+            //        message.Text = "This policy period is Invalid";
+            //    }
+            //    else
+            //    {
+
+
+            //        if (txt_ref.Text.Trim() != "")
+            //        {
+            //            if (txt_ref.Text.Trim().ToString().Contains("TPI"))
+            //            {
+            //                dic.Add("polTy", "TPI");
+            //            }
+            //            if (txt_ref.Text.Trim().ToString().Contains("TPM"))
+            //            {
+            //                dic.Add("polTy", "TPM");
+            //            }
+            //        }
+            //        else
+            //        {
+            //            dic.Add("polTy", "");
+            //        }
+
+            //        Response.Redirect(dc.url_encrypt("Inquiry_Details.aspx", dic));
+            //    }
+            //}
+            //else
+            //{
+            //    message.Text = "Please enter either Online Ref. Number or Passport Number.";
+            //}
+
+
+
+
+
+
 
         }
 
-        protected void Btnsearch_Click(object sender, EventArgs e)
+        public void Btnsearch_Click(object sender, EventArgs e)
         {
-            Label lblName = (Label)Panel2.FindControl("LblName");
-            Label lblNUm = (Label)Panel2.FindControl("LabelMobi");
-            TextBox textPol = (TextBox)Panel2.FindControl("Txtboxpol");
-            Label SentDate = (Label)Panel2.FindControl("LblDate");
-            
 
-            string cname = "";
-            string cnum = "";
-            string polNum = "";
-            string csendDate = "";
-            
+            //GridView gridView = (GridView)Panel2.FindControl("GridView1");
+            //string msg = getAuditDate(gridView);
 
-            string[] array = new string[3];
-
-            polNum = textPol.Text.ToString();
-
-            array = getCustomerDetails(polNum);
-            lblName.Text = array[0];
-            lblNUm.Text = array[1];
-            SentDate.Text = array[2];
+            if (Txtboxpol.Text.Trim() != "")
+            {
+                //if (msg != "success")
+                //{
+                //    GridView1.EmptyDataText = msg;
+                //}
 
 
+
+                this.Polmsg.Visible = true;
+                Polmsg.Text = "This policy Period is Invalid";
+            }
+
+            else
+            {
+
+                Label lblName = (Label)Panel2.FindControl("LblName");
+                Label lblNUm = (Label)Panel2.FindControl("LabelMobi");
+                TextBox textPol = (TextBox)Panel2.FindControl("Txtboxpol");
+                Label SentDate = (Label)Panel2.FindControl("LblDate");
+
+
+                string cname = "";
+                string cnum = "";
+                string polNum = "";
+                string csendDate = "";
+
+
+                string[] array = new string[3];
+
+                polNum = textPol.Text.ToString();
+
+                array = getCustomerDetails(polNum);
+                lblName.Text = array[0];
+                lblNUm.Text = array[1];
+                SentDate.Text = array[2];
+
+            }
 
         }
 

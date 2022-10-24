@@ -97,7 +97,7 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style4" style="color:#0000CD" >
-                        <asp:Label runat="server" Text="Policy No :"></asp:Label>
+                        <asp:Label runat="server" Text="Policy No :" ID="pol_No"></asp:Label>
                         <asp:TextBox ID="Txtboxpol" runat="server"></asp:TextBox>
                     </td>
                     <td rowspan="3">&nbsp;</td>
@@ -110,6 +110,7 @@
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style5">
                     <asp:Button ID="Btnsearch" runat="server" Text="SEARCH" CssClass="auto-style12" Height="30px" BackColor="#4682B4" ForeColor="#FFFFFF" OnClick="Btnsearch_Click"/>
+                        <asp:Label ID="Polmsg" runat="server" Text="[Message]" Font-Size="10pt" ForeColor="Red" Visible="False"></asp:Label>
                     </td>
                 </tr>
             </table>
@@ -121,15 +122,15 @@
                     <td class="auto-style7"></td>
                     <td class="auto-style6" >
                         <asp:Label ID="LblCusName" runat="server" Text="Customer Name : " style="color:#0000CD"></asp:Label>
-                        <asp:Label ID="LblName" runat="server" Text="LblName"></asp:Label>
+                        <asp:Label ID="LblName" runat="server" Text=""></asp:Label>
                     </td>
                     <td rowspan="2">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style7">&nbsp;</td>
                     <td class="auto-style6">
-                        <asp:Label ID="LblMobile" runat="server" Text="Customer Mobile :" style="color:#0000CD"></asp:Label>
-                        <asp:Label ID="LabelMobi" runat="server" Text="LblMobi"></asp:Label>
+                        <asp:Label ID="LblMobile" runat="server" Text="Mobile:" style="color:#0000CD"></asp:Label>
+                        <asp:Label ID="LabelMobi" runat="server" Text=""></asp:Label>
                         &nbsp;<table style="width:100%;">
                             <tr>
                                 <td class="auto-style11"></td>
@@ -149,7 +150,7 @@
                                 <td class="auto-style11">
                                     <asp:Label ID="LabelSentDate" runat="server" Text="SMS Sent Date :" style="color:#0000CD"></asp:Label>
                                     
-                                    <asp:Label ID="LblDate" runat="server" Text="LblSentDate"></asp:Label>
+                                    <asp:Label ID="LblDate" runat="server" Text=""></asp:Label>
                                     
                                 </td>
                                 <td class="auto-style11"></td>

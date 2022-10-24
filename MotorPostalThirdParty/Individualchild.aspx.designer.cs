@@ -31,6 +31,15 @@ namespace MotorPostalThirdParty {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
+        /// pol_No control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pol_No;
+        
+        /// <summary>
         /// Txtboxpol control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace MotorPostalThirdParty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btnsearch;
+        
+        /// <summary>
+        /// Polmsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Polmsg;
         
         /// <summary>
         /// Panel2 control.
