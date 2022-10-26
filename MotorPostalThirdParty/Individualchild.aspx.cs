@@ -281,14 +281,9 @@ namespace MotorPostalThirdParty
 
             if (Txtboxpol.Text.Trim() != "")
             {
-                //if (msg != "success")
-                //{
-                //    GridView1.EmptyDataText = msg;
-                //}
-
-
-
+  
                 this.Polmsg.Visible = true;
+                
                 Polmsg.Text = "This policy Period is Invalid";
             }
 
