@@ -70,7 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Individual.aspx" />
     <Content Include="css\custom-theme\images\animated-overlay.gif" />
     <Content Include="css\custom-theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\custom-theme\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -128,14 +127,9 @@
     <Compile Include="App_Code\MTPolicy.cs" />
     <Content Include="App_Code\PolicyDetails.cs" />
     <Content Include="App_Code\RefDetails.cs" />
+    <Compile Include="DTO\CustomerDetails.cs" />
     <Compile Include="DTO\ThirdPartyCard.cs" />
-    <Compile Include="Individual.aspx.cs">
-      <DependentUpon>Individual.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Individual.aspx.designer.cs">
-      <DependentUpon>Individual.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="DTO\ThirdPartyCardDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +168,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\NewFolder1\" />
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
   </ItemGroup>

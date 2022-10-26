@@ -197,13 +197,17 @@
                                            HeaderStyle-ForeColor="#ffffff" HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false">
                                             <ItemStyle HorizontalAlign="Center" ForeColor="#000000"></ItemStyle>
                                         </asp:BoundField>
-                             <asp:TemplateField HeaderText="Date" HeaderStyle-ForeColor="#ffffff"
+                            <asp:BoundField HeaderText="Date" DataField="VEHICLE_NOS" SortExpression="Matching Vehicle Nos"
+                                           HeaderStyle-ForeColor="#ffffff" HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false">
+                                            <ItemStyle HorizontalAlign="Center" ForeColor="#000000"></ItemStyle>
+                                        </asp:BoundField>
+                             <%--<asp:TemplateField HeaderText="Date" HeaderStyle-ForeColor="#ffffff"
                                 HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false" ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="receiptNo" runat="server" NavigateUrl='<%# String.Format("Search_By_VehicleNo_3.aspx?txt_ReceiptNo="+Eval("receiptNo"))%>'
                                         Text='<%# Eval("receiptNo") %>' HorizontalAlign="Center"></asp:HyperLink>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                         </Columns>
                     </asp:GridView>
 

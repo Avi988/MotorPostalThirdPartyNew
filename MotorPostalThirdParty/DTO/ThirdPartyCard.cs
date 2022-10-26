@@ -436,10 +436,11 @@ namespace MotorPostalThirdParty.DTO
 
                 //cmd = new OracleCommand(sql, oconn);
 
-                OracleDataReader reader = cmd.ExecuteReader();
+               
 
                 using (OracleCommand cmd = new OracleCommand(sql, oconn))
                 {
+                    OracleDataReader reader = cmd.ExecuteReader();
                     OracleDataAdapter data = new OracleDataAdapter();
 
                     data.SelectCommand = cmd;
@@ -465,7 +466,7 @@ namespace MotorPostalThirdParty.DTO
                         pd.PeriodOfCover = reader[13].ToString().Trim();
                         pd.Place = reader[13].ToString().Trim();
                         pd.RefNo = reader[14].ToString().Trim();
-                        //pd.RsValue = Convert.ToDouble(row[15].ToString().Trim());
+                        pd.RsValue = Convert.ToDouble(reader[15].ToString().Trim());
                         pd.SN = reader[16].ToString().Trim();
                         pd.SNDate = reader[17].ToString().Trim();
                         pd.CoverList = reader[18].ToString().Trim();
@@ -502,7 +503,7 @@ namespace MotorPostalThirdParty.DTO
                 oconn.Close();
             }
 
-            return mesg;
+            return pd;
             
         }
 

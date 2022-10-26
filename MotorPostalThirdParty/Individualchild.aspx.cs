@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-
+using MotorPostalThirdParty.DTO;
 
 namespace MotorPostalThirdParty
 {
@@ -37,8 +37,9 @@ namespace MotorPostalThirdParty
 
         }
 
-        public string[] getCustomerDetails(string polNo)
+        public CustomerDetails getCustomerDetails(string polNo)
         {
+            CustomerDetails customerDetails = new CustomerDetails();
             string customerName = "";
             string customerNumber = "";
             string sendDatesms = "";
@@ -80,9 +81,7 @@ namespace MotorPostalThirdParty
 
 
                     }
-                    array[0] = customerName;
-                    array[1] = customerNumber;
-                    array[2] = sendDatesms;
+
 
 
                 }
@@ -96,7 +95,7 @@ namespace MotorPostalThirdParty
                 oconn.Close();
             }
 
-            return array;
+            return customerDetails;
         }
 
 
@@ -215,7 +214,7 @@ namespace MotorPostalThirdParty
 
             polNum = textPol.Text.ToString();
 
-            array = getCustomerDetails(polNum);
+            var customer = getCustomerDetails(polNum);
             lblName.Text = array[0];
             lblNUm.Text = array[1];
             SentDate.Text = array[2];
