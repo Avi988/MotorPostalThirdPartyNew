@@ -62,10 +62,11 @@ namespace MotorPostalThirdParty.DTO
                     oconn.Open();
                 }
 
-                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy')" +
-                             "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b" +
-                             "where a.POLICYNO = 'A/52/0000536/028/P'";
-
+                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2,to_char(a.DATCOMM, 'DD/MON/YYYY'),to_char(a.DATEXIT, 'DD/MON/YYYY'),b.PI_ENTDATE" +
+                            "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b" +
+                            "where a.POLICYNO = 'A/52/0000536/028/P'" +
+                            "and b.pi_entdate >= To_date('01-01-2022', 'dd-MM-yyyy')" +
+                            "order by b.pi_entdate";
 
 
                 using (OracleCommand cmd = new OracleCommand(sql, oconn))
@@ -427,20 +428,21 @@ namespace MotorPostalThirdParty.DTO
                     oconn.Open();
                 }
 
-                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'dd/mm/yyyy'),to_char(a.DATEXIT, 'dd/mm/yyyy'),b.PI_BRACODE" +
+                string sql = "select a.POLICYNO, a.VEHNO, a.CHASNO, a.TARCODE, a.NETPRM, b.PI_PRONAME1, b.PI_BRACODE, b.PI_PROADDR1, b.PI_PROADDR2, c.NIC_NO,to_char(a.DATCOMM, 'DD/MM/YYYY'),to_char(a.DATEXIT, 'DD/MM/YYYY'),b.PI_BRACODE" +
                              "from THIRDPARTY.POLICY_INFORMATION a, THIRDPARTY.PERSONAL_INFORMATION b, CLIENTDB.PERSONAL_CUSTOMER c" +
                              "where a.POLICYNO = '" + policyNo + "'" +
                              "and Policy Year = '" + policyYear + "'" +
-                             "and pi_bracode = '133'";
+                             "and pi_bracode = '133'" +
+                             "and b.pi_entdate >= To_date('01-01-2022','dd-MM-yyyy')" +
+                             "order by b.pi_entdate";
 
 
                 //cmd = new OracleCommand(sql, oconn);
 
-               
+                OracleDataReader reader = cmd.ExecuteReader();
 
                 using (OracleCommand cmd = new OracleCommand(sql, oconn))
                 {
-                    OracleDataReader reader = cmd.ExecuteReader();
                     OracleDataAdapter data = new OracleDataAdapter();
 
                     data.SelectCommand = cmd;
@@ -466,7 +468,7 @@ namespace MotorPostalThirdParty.DTO
                         pd.PeriodOfCover = reader[13].ToString().Trim();
                         pd.Place = reader[13].ToString().Trim();
                         pd.RefNo = reader[14].ToString().Trim();
-                        pd.RsValue = Convert.ToDouble(reader[15].ToString().Trim());
+                        //pd.RsValue = Convert.ToDouble.ToStringreader(row[15].ToString().Trim());
                         pd.SN = reader[16].ToString().Trim();
                         pd.SNDate = reader[17].ToString().Trim();
                         pd.CoverList = reader[18].ToString().Trim();
@@ -474,15 +476,17 @@ namespace MotorPostalThirdParty.DTO
 
 
 
-                        mesg = "This Policy Details are Invalid";
+                        //mesg = "This Policy Details are Invalid";
 
                         break;
 
                     }
 
+                    
+
                 }
 
-                
+ 
                 string sql1 = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime,d.po_code, d.book_no, d.rec_no,c.covers" +
                               "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c, postoffice.policy_transactions d" +
                               "where b.branch_code = '" + branch_code + "'";
@@ -495,7 +499,7 @@ namespace MotorPostalThirdParty.DTO
             }
             catch (Exception e)
             {
-
+                mesg = "This Policy Detials are Invalid";
             }
             finally
             {
@@ -503,7 +507,7 @@ namespace MotorPostalThirdParty.DTO
                 oconn.Close();
             }
 
-            return pd;
+            return mesg;
             
         }
 
