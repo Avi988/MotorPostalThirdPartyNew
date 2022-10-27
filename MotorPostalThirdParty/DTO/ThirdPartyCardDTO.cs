@@ -31,6 +31,7 @@ namespace MotorPostalThirdParty.DTO
         public string Po_Code { get; set; }
         public double RsValue { get; set; }
         public string SN { get; set; }
+        public string CoverList { get; set; }
 
     }
 }

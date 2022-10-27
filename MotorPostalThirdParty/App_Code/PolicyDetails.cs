@@ -55,6 +55,7 @@ namespace MotorPostalThirdParty.App_Code
                     cardDetails.RefNo               = reader[14].ToString().Trim();
                     cardDetails.RsValue             = Convert.ToDouble(reader[15].ToString().Trim());
                     cardDetails.SN                  = reader[16].ToString().Trim();
+                    cardDetails.CoverList           = reader[17].ToString().Trim();
 
                     break;
                 }
@@ -217,15 +218,48 @@ namespace MotorPostalThirdParty.App_Code
                     if(cardDetails.SN == "")
                     {
 
-                        com.Parameters.Clear();
-                        sql = "Select branch_code,seq_no From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = '10'";
-                        
-                        //sql =
-                            //Select * From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = " & Session("UserBcd") & "
-                            //and RsSN.CursorType = 1
-                            //and RsSN.LockType = 2
-                            //and RsSN.Open()
+                        com.Parameters.Clear();                       
+                        sql = "Select * From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = '10'";
 
+                        OracleParameter SNno = new OracleParameter();
+                        SNno.Value = policyNo;
+                        SNno.ParameterName = "BRANCH_CODE";
+
+                        com.Parameters.Add(SNno);
+
+
+
+                    }
+                
+                }
+
+                if(String.IsNullOrEmpty(cardDetails.CoverList))
+                {
+                    if(cardDetails.CoverList == "")
+                    {
+
+                        com.Parameters.Clear();
+                        sql = "select TARCODE,POLICYNO" + 
+                              "from thirdparty.policy_information" +
+                              "where POLICYNO = '" + policyNo + "'" +
+                              "and ENTDATE >= To_date('01-01-2022','dd-MM-yyyy') order by ENTERED_DATE";
+
+
+                        sql =  "SELECT TARIFF_CODE,EFFECTIVE_DATE,COVERS " +
+                               "FROM THIRDPARTY.TBLBASICRATE" +
+                               "where TARIFF_CODE = '" + tariff_code + "'" +
+                               "and COVERS = '2.i, 3(a)ii,iii,v,(b)i'" +
+                               "and MAX(EFFECTIVE_DATE) AS MAX_DATE " +
+                               "and EFFECTIVE_DATE >= To_date('01-01-2022','dd-MM-yyyy')" +
+                               "order by EFFECTIVE_DATE";
+
+
+
+                        OracleParameter CoverNo = new OracleParameter();
+                        CoverNo.Value = policyNo;
+                        CoverNo.ParameterName = "tariff_code";
+
+                        com.Parameters.Add(CoverNo);
 
 
 
