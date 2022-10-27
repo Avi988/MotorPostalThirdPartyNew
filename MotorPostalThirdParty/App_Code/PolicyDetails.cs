@@ -51,6 +51,10 @@ namespace MotorPostalThirdParty.App_Code
                     cardDetails.Amount              = Convert.ToDouble(reader[10].ToString().Trim());
                     cardDetails.TariffCode          = reader[11].ToString().Trim();
                     cardDetails.EntryUser           = reader[12].ToString().Trim();
+                    cardDetails.Po_Code             = reader[13].ToString().Trim();
+                    cardDetails.RefNo               = reader[14].ToString().Trim();
+                    cardDetails.RsValue             = Convert.ToDouble(reader[15].ToString().Trim());
+                    cardDetails.SN                  = reader[16].ToString().Trim();
 
                     break;
                 }
@@ -128,6 +132,8 @@ namespace MotorPostalThirdParty.App_Code
 
                 if (String.IsNullOrEmpty(cardDetails.BranchNo))
                 {
+
+
                     if (cardDetails.BranchNo == "113")
                     {
                         com.Parameters.Clear();
@@ -151,6 +157,86 @@ namespace MotorPostalThirdParty.App_Code
                     else
                     { }
                 }
+
+                if (cardDetails.Po_Code == "PO_CODE")
+                {
+                    com.Parameters.Clear();
+                }
+
+
+                
+                if (String.IsNullOrEmpty(cardDetails.RefNo))
+                {
+                    if (cardDetails.RefNo == "")
+                    {
+                        com.Parameters.Clear();
+                        
+                        sql = " select po_code, book_no, LPAD(rec_no,6,'0'),entuser" +
+                              " from postoffice.policy_transactions pt," +
+                              " inner" +
+                              " join thirdparty.policy_information pi ON pt.policy_no = pi.policyno" +
+                              " where pt.policy_no = pi.policyno";
+
+                        OracleParameter RefNo = new OracleParameter();
+                        RefNo.Value = policyNo;
+                        RefNo.ParameterName = "policy_no";
+
+                        com.Parameters.Add(RefNo);
+
+
+                        //POLICY_NO = "'and trim(Rs.Pol("Policyno")) and"' "_
+                        //AND DEBNOTE_NO = '"and trim(RsPayFle("PMSEQ"))&"' AND INSU_PMTYP = "'and
+                        //RsPayFle("PMTYP") & "' "
+
+                        sql = "select ENTUSER from thirdparty.policy_information" +
+                               "where policy_no = policy_no";
+
+
+
+                    }
+
+
+
+
+                }
+                
+                //IsPositiveInfinity
+                if(Double.IsPositiveInfinity(cardDetails.RsValue))
+                {
+                    if(cardDetails.RsValue > 0)
+                    {
+                        com.Parameters.Clear();
+                        sql = " select netprm " +
+                              " from thirdparty.policy_information";
+                    }
+
+                }
+
+                if(String.IsNullOrEmpty(cardDetails.SN))
+                {
+                    if(cardDetails.SN == "")
+                    {
+
+                        com.Parameters.Clear();
+                        sql = "Select branch_code,seq_no From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = '10'";
+                        
+                        //sql =
+                            //Select * From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = " & Session("UserBcd") & "
+                            //and RsSN.CursorType = 1
+                            //and RsSN.LockType = 2
+                            //and RsSN.Open()
+
+
+
+
+
+                    }
+                }
+
+
+
+
+
             }
             catch (Exception ex)
             { }
@@ -158,6 +244,9 @@ namespace MotorPostalThirdParty.App_Code
             {
                 conn.Close();
             }
+
+             
+
 
             return cardDetails;
         }
