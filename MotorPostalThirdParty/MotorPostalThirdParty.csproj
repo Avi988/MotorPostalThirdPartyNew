@@ -125,10 +125,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\MTPolicy.cs" />
-    <Content Include="..\..\..\..\Desktop\TPMotor\PolicyDetails.cs">
-      <Link>App_Code\PolicyDetails.cs</Link>
-    </Content>
     <Content Include="App_Code\RefDetails.cs" />
+    <Content Include="App_Code\PolicyDetails.cs" />
     <Compile Include="DTO\CustomerDetails.cs" />
     <Compile Include="DTO\ThirdPartyCard.cs" />
     <Compile Include="DTO\ThirdPartyCardDTO.cs" />
