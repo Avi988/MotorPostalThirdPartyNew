@@ -201,6 +201,8 @@ namespace MotorPostalThirdParty.App_Code
                                   "from THIRDPARTY.CERTIFICATE_CADE_SEQ" +
                                   "where branch_code = '11'";
 
+                            com = new OracleCommand(sql, conn);
+
                             OracleParameter sn = new OracleParameter();
                             sn.Value = policyNo;
                             sn.ParameterName = "branch_code";
@@ -252,6 +254,8 @@ namespace MotorPostalThirdParty.App_Code
                                       " inner" +
                                       " join thirdparty.policy_information pi ON pt.policy_no = pi.policyno" +
                                       " where pt.policy_no = pi.policyno";
+
+                                com = new OracleCommand(sql, conn);
 
                                 //sql = "select ENTUSER from thirdparty.policy_information" +
                                 //      "where policy_no = policy_no";
@@ -374,7 +378,7 @@ namespace MotorPostalThirdParty.App_Code
                                       "WHERE trim(TARIFF_CODE) = :tariff_code" +
                                       "order by effective_date desc";
 
-
+                                com = new OracleCommand(sql, conn);
 
                                 OracleParameter CoverNo = new OracleParameter();
                                 CoverNo.Value = cardDetails.TariffCode;
