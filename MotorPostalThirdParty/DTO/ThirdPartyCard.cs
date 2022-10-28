@@ -32,9 +32,6 @@ namespace MotorPostalThirdParty.DTO
         public string BarCode { get; set; }
         public string ProName { get; set; }
         
-
-
-
         OracleConnection oconn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
 
 
@@ -42,9 +39,6 @@ namespace MotorPostalThirdParty.DTO
         ThirdPartyCard re = new ThirdPartyCard();
         ThirdPartyCard ds = new ThirdPartyCard();
         
-
-
-
 
         public ThirdPartyCard()
         {
@@ -437,8 +431,6 @@ namespace MotorPostalThirdParty.DTO
                              "order by b.pi_entdate";
 
 
-
-
                 //cmd = new OracleCommand(sql, oconn);
 
                 OracleDataReader reader = cmd.ExecuteReader();
@@ -492,6 +484,8 @@ namespace MotorPostalThirdParty.DTO
                 string sql1 = "select a.netprm, b.branch_code, b.seq_no, a.policyno, a.updtime,d.po_code, d.book_no, d.rec_no,c.covers" +
                               "from thirdparty.policy_information a, thirdparty.certificate_cade_seq b, thirdparty.tblbasicrate c, postoffice.policy_transactions d" +
                               "where b.branch_code = '" + branch_code + "'";
+
+                
 
                 string sql2 = "SELECT CUSTOMER_ID, COMPANY_NAME" +
                               "FROM CLIENTDB.CORPORATE_CUSTOMER" +

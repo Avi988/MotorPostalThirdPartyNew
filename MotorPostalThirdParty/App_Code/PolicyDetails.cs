@@ -58,6 +58,7 @@ namespace MotorPostalThirdParty.App_Code
                         cardDetails.RsValue = Convert.ToDouble(reader[15].ToString().Trim());
                         cardDetails.SN = reader[16].ToString().Trim();
                         cardDetails.CoverList = reader[17].ToString().Trim();
+                        cardDetails.PName = reader[18].ToString().Trim();
 
                         break;
                     }
@@ -156,130 +157,290 @@ namespace MotorPostalThirdParty.App_Code
                             OracleDataReader reader_3 = com.ExecuteReader();
                             while (reader_3.Read())
                             {
+
+                                if (reader_3[2].ToString().Trim() == "C")
+                                {
+                                    string PNAME = "";
+                                    string PCODE = "";
+
+                                    if (reader_3[0] != null)
+                                        PNAME = reader_3[0].ToString().Trim();
+                                    if (reader_3[1] != null)
+                                        PCODE = reader_3[1].ToString().Trim();
+
+                                    if (!String.IsNullOrEmpty(PNAME) || !String.IsNullOrEmpty(PCODE))
+                                    {
+                                        if (String.IsNullOrEmpty(PNAME))
+                                        {
+                                            cardDetails.ID = PNAME;
+                                            cardDetails.IDLabel = "P_Name";
+                                        }
+                                        else if (String.IsNullOrEmpty(PCODE))
+                                        {
+                                            cardDetails.ID = PCODE;
+                                            cardDetails.IDLabel = "P_CODE";
+                                        }
+                                    }
+                                }
+
+                                //break;
                             }
                         }
                         else
                         { }
                     }
 
-                    if (cardDetails.Po_Code == "PO_CODE")
-                    {
-                        com.Parameters.Clear();
-                    }
-
-
-
-                    if (String.IsNullOrEmpty(cardDetails.RefNo))
-                    {
-                        if (cardDetails.RefNo == "")
-                        {
-                            com.Parameters.Clear();
-
-                            sql = " select po_code, book_no, LPAD(rec_no,6,'0'),entuser" +
-                                  " from postoffice.policy_transactions pt," +
-                                  " inner" +
-                                  " join thirdparty.policy_information pi ON pt.policy_no = pi.policyno" +
-                                  " where pt.policy_no = pi.policyno";
-
-                            OracleParameter RefNo = new OracleParameter();
-                            RefNo.Value = policyNo;
-                            RefNo.ParameterName = "policy_no";
-
-                            com.Parameters.Add(RefNo);
-
-
-                            //POLICY_NO = "'and trim(Rs.Pol("Policyno")) and"' "_
-                            //AND DEBNOTE_NO = '"and trim(RsPayFle("PMSEQ"))&"' AND INSU_PMTYP = "'and
-                            //RsPayFle("PMTYP") & "' "
-
-                            sql = "select ENTUSER from thirdparty.policy_information" +
-                                   "where policy_no = policy_no";
-
-
-
-                        }
-
-
-
-
-                    }
-
-                    //IsPositiveInfinity
-                    if (Double.IsPositiveInfinity(cardDetails.RsValue))
-                    {
-                        if (cardDetails.RsValue > 0)
-                        {
-                            com.Parameters.Clear();
-                            sql = " select netprm " +
-                                  " from thirdparty.policy_information";
-                        }
-
-                    }
-
                     if (String.IsNullOrEmpty(cardDetails.SN))
                     {
                         if (cardDetails.SN == "")
                         {
-
                             com.Parameters.Clear();
-                            sql = "Select * From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = '10'";
 
-                            OracleParameter SNno = new OracleParameter();
-                            SNno.Value = policyNo;
-                            SNno.ParameterName = "BRANCH_CODE";
+                            sql = "select branch_code,seq_no" +
+                                  "from THIRDPARTY.CERTIFICATE_CADE_SEQ" +
+                                  "where branch_code = '11'";
 
-                            com.Parameters.Add(SNno);
+                            OracleParameter sn = new OracleParameter();
+                            sn.Value = policyNo;
+                            sn.ParameterName = "branch_code";
+
+                            com.Parameters.Add(sn);
+                            OracleDataReader reader_1 = com.ExecuteReader();
+                            while (reader_1.Read())
+                            {
+                                if (reader_1[2].ToString().Trim() == "C")
+                                {
+                                    string BRANCH_CODE = "";
+                                    string SEQ_NO = "";
+
+                                    if (reader_1[0] != null)
+                                        BRANCH_CODE = reader_1[0].ToString().Trim();
+                                    if (reader_1[1] != null)
+                                        SEQ_NO = reader_1[1].ToString().Trim();
+
+                                    if (!String.IsNullOrEmpty(BRANCH_CODE) || !String.IsNullOrEmpty(SEQ_NO))
+                                    {
+                                        if (String.IsNullOrEmpty(BRANCH_CODE))
+                                        {
+                                            cardDetails.ID3 = BRANCH_CODE;
+                                            cardDetails.IDLabel3 = "Branch code";
+                                        }
+                                        else if (String.IsNullOrEmpty(SEQ_NO))
+                                        {
+                                            cardDetails.ID3 = SEQ_NO;
+                                            cardDetails.IDLabel3 = "seq no";
+                                        }
+                                    }
+                                }
+                            }
 
 
 
                         }
 
-                    }
 
-                    if (String.IsNullOrEmpty(cardDetails.CoverList))
-                    {
-                        if (cardDetails.CoverList == "")
+
+                        if (String.IsNullOrEmpty(cardDetails.RefNo))
                         {
-
-                            com.Parameters.Clear();
-                            //sql = "select TARCODE,POLICYNO" +
-                            //      "from thirdparty.policy_information" +
-                            //      "where POLICYNO = '" + policyNo + "'" +
-                            //      "and ENTDATE >= To_date('01-01-2022','dd-MM-yyyy') order by ENTERED_DATE";
-
-
-                            
-                            //Use this
-                            //SELECT COVERS
-                            //   FROM THIRDPARTY.TBLBASICRATE
-                            //   where trim(TARIFF_CODE) = :tariff_code
-                            //   order by effective_date desc
-
-                            OracleParameter CoverNo = new OracleParameter();
-                            CoverNo.Value = cardDetails.TariffCode;
-                            CoverNo.ParameterName = "tariff_code";
-
-                            com.Parameters.Add(CoverNo);
-
-                            OracleDataReader reader_5 = com.ExecuteReader();
-                            while (reader_5.Read())
+                            if (cardDetails.RefNo == "")
                             {
-                                //variable
+                                com.Parameters.Clear();
 
-                                break;
+                                sql = " select po_code, book_no, LPAD(rec_no,6,'0'),entuser" +
+                                      " from postoffice.policy_transactions pt," +
+                                      " inner" +
+                                      " join thirdparty.policy_information pi ON pt.policy_no = pi.policyno" +
+                                      " where pt.policy_no = pi.policyno";
+
+                                //sql = "select ENTUSER from thirdparty.policy_information" +
+                                //      "where policy_no = policy_no";
+
+                                OracleParameter RefNo = new OracleParameter();
+                                RefNo.Value = policyNo;
+                                RefNo.ParameterName = "policy_no";
+
+                                com.Parameters.Add(RefNo);
+                                OracleDataReader reader_4 = com.ExecuteReader();
+                                while (reader_4.Read())
+                                {
+
+                                    if (reader_4[2].ToString().Trim() == "E")
+                                    {
+
+                                        string BOOK_NO = "";
+                                        string ENTUSER = "";
+
+                                        if (reader_4[0] != null)
+                                            BOOK_NO = reader_4[0].ToString().Trim();
+                                        if (reader_4[1] != null)
+                                            ENTUSER = reader_4[1].ToString().Trim();
+
+                                        if (!String.IsNullOrEmpty(BOOK_NO) || !String.IsNullOrEmpty(ENTUSER))
+                                        {
+                                            if (String.IsNullOrEmpty(BOOK_NO))
+                                            {
+                                                cardDetails.ID4 = BOOK_NO;
+                                                cardDetails.IDLabel4 = "Book No";
+                                            }
+                                            else if (String.IsNullOrEmpty(ENTUSER))
+                                            {
+                                                cardDetails.ID4 = ENTUSER;
+                                                cardDetails.IDLabel4 = "Ent User";
+                                            }
+                                        }
+                                    }
+
+
+
+
+
+
+                                }
+
+
+
                             }
 
 
 
 
                         }
+
+
+
+                        if (String.IsNullOrEmpty(cardDetails.SN))
+                        {
+                            if (cardDetails.SN == "")
+                            {
+
+                                com.Parameters.Clear();
+                                sql = "Select * From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = '10'";
+
+                                OracleParameter SNno = new OracleParameter();
+                                SNno.Value = policyNo;
+                                SNno.ParameterName = "BRANCH_CODE";
+
+                                com.Parameters.Add(SNno);
+
+
+
+                                OracleDataReader reader_5 = com.ExecuteReader();
+                                while (reader_5.Read())
+                                {
+
+                                    if (reader_5[1].ToString().Trim() == "F")
+                                    {
+
+                                        string BRANCH_CODE = "";
+
+
+                                        if (reader_5[0] != null)
+                                            BRANCH_CODE = reader_5[0].ToString().Trim();
+
+
+                                        if (!String.IsNullOrEmpty(BRANCH_CODE))
+                                        {
+                                            if (String.IsNullOrEmpty(BRANCH_CODE))
+                                            {
+                                                cardDetails.ID5 = BRANCH_CODE;
+                                                cardDetails.IDLabel5 = "Book No";
+                                            }
+
+                                        }
+                                    }
+
+
+                                }
+
+
+                            }
+
+                        }
+
+                        if (String.IsNullOrEmpty(cardDetails.CoverList))
+                        {
+                            if (cardDetails.CoverList == "")
+                            {
+
+                                com.Parameters.Clear();
+                                sql = "select TARCODE,POLICYNO" +
+                                      "from thirdparty.policy_information" +
+                                      "where POLICYNO = '" + policyNo + "'" +
+                                      "and ENTDATE >= To_date('01-01-2022','dd-MM-yyyy') order by ENTERED_DATE";
+
+                                sql = "SELECT COVERS" +
+                                      "FROM THIRDPARTY.TBLBASICRATE" +
+                                      "WHERE trim(TARIFF_CODE) = :tariff_code" +
+                                      "order by effective_date desc";
+
+
+
+                                OracleParameter CoverNo = new OracleParameter();
+                                CoverNo.Value = cardDetails.TariffCode;
+                                CoverNo.ParameterName = "tariff_code";
+
+                                com.Parameters.Add(CoverNo);
+
+                                OracleDataReader reader_5 = com.ExecuteReader();
+                                while (reader_5.Read())
+                                {
+                                    if (reader_5[3].ToString().Trim() == "B")
+                                    {
+                                        string TARIFF_CODE = "";
+                                        string EFFECTIVE_DATE = "";
+                                        string COVERS = "";
+
+                                        if (reader_5[0] != null)
+                                            TARIFF_CODE = reader_5[0].ToString().Trim();
+                                        if (reader_5[1] != null)
+                                            EFFECTIVE_DATE = reader_5[1].ToString().Trim();
+
+                                        if (reader_5[2] != null)
+                                            COVERS = reader_5[2].ToString().Trim();
+
+
+                                        if (!String.IsNullOrEmpty(TARIFF_CODE) || !String.IsNullOrEmpty(EFFECTIVE_DATE) || !String.IsNullOrEmpty(COVERS))
+                                        {
+                                            if (string.IsNullOrEmpty(TARIFF_CODE))
+                                            {
+                                                cardDetails.CoverList = TARIFF_CODE;
+                                                cardDetails.CoverList1 = "TARIFF CODE";
+                                            }
+                                            else if (string.IsNullOrEmpty(EFFECTIVE_DATE))
+                                            {
+
+                                                cardDetails.CoverList = EFFECTIVE_DATE;
+                                                cardDetails.CoverList1 = "EFFECTIVE DATE";
+
+                                            }
+                                            else if (string.IsNullOrEmpty(COVERS))
+                                            {
+                                                cardDetails.CoverList = COVERS;
+                                                cardDetails.CoverList1 = "COVERS";
+                                            }
+
+
+                                        }
+
+
+
+                                        break;
+                                    }
+
+
+
+
+                                }
+                                com.Parameters.Clear();
+                            }
+
+
+                        }
                     }
-
-
 
                 }
 
-            }
+                }
             catch (Exception ex)
             { }
             finally

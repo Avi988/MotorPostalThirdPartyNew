@@ -29,9 +29,20 @@ namespace MotorPostalThirdParty.DTO
         public string ID { get; set; }
         public string IDLabel { get; set; }
         public string Po_Code { get; set; }
+        public string PName { get; set; }
         public double RsValue { get; set; }
         public string SN { get; set; }
         public string CoverList { get; set; }
+        public string CoverList1 { get; set; }
+        public string ID2 { get; set; }
+        public string IDLabel2 { get; set; }
+        public string ID3 { get; set; }
+        public string IDLabel3 { get; set; }
+        public string ID4 { get; set; }
+        public string IDLabel4 { get; set; }
+        public string ID5 { get; set; }
+        public string IDLabel5 { get; set; }
+
 
     }
 }
