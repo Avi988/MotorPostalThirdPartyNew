@@ -138,7 +138,7 @@ namespace MotorPostalThirdParty.App_Code
                     if (String.IsNullOrEmpty(cardDetails.BranchNo))
                     {
 
-
+                        
                         if (cardDetails.BranchNo == "113")
                         {
                             com.Parameters.Clear();
@@ -147,6 +147,7 @@ namespace MotorPostalThirdParty.App_Code
                                     "inner " +
                                     "join POSTOFFICE.POST_OFFICE P ON t.po_code = p.po_code " +
                                     "where t.policy_no = :policy_num";
+                            com = new OracleCommand(sql, conn);
 
                             OracleParameter oppo = new OracleParameter();
                             oppo.Value = policyNo;
@@ -183,7 +184,7 @@ namespace MotorPostalThirdParty.App_Code
                                     }
                                 }
 
-                                //break;
+                                break;
                             }
                         }
                         else
