@@ -13,6 +13,8 @@ namespace MotorPostalThirdParty.App_Code
     {
         OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
 
+       
+
         public ThirdPartyCardDTO getCardDetails(string policyNo)
         {
             
@@ -431,6 +433,8 @@ namespace MotorPostalThirdParty.App_Code
 
                                         break;
                                     }
+
+
 
 
 
