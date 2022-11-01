@@ -117,6 +117,7 @@
     <Content Include="js\jquery.blockUI.js" />
     <Content Include="js\script.js" />
     <Content Include="Style.css" />
+    <Content Include="Test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -125,8 +126,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\MTPolicy.cs" />
+    <Compile Include="App_Code\PolDetails.cs" />
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Content Include="App_Code\RefDetails.cs" />
-    <Content Include="App_Code\PolicyDetails.cs" />
+    <Compile Include="App_Code\PolicyDetails.cs" />
     <Compile Include="DTO\CustomerDetails.cs" />
     <Compile Include="DTO\ThirdPartyCard.cs" />
     <Compile Include="DTO\ThirdPartyCardDTO.cs" />
@@ -168,7 +177,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\NewFolder1\" />
     <Folder Include="App_Data\" />
     <Folder Include="DAL\" />
   </ItemGroup>

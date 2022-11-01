@@ -26,14 +26,14 @@ namespace MotorPostalThirdParty
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //GridView gridView = (GridView)Panel2.FindControl("GridView1");
-            //string msg = getAuditDate(gridView);
-            //this.getAuditDate(gridView);
+            GridView gridView = (GridView)Panel2.FindControl("GridView1");
+            string msg = getAuditDate(gridView);
+            this.getAuditDate(gridView);
 
-            //Label lblName = (Label)Panel2.FindControl("LblName");
-            //lblName.Text = msg;
+            Label lblName = (Label)Panel2.FindControl("LblName");
+            lblName.Text = msg;
 
-            
+
 
         }
 
@@ -290,26 +290,26 @@ namespace MotorPostalThirdParty
             else
             {
 
-                //Label lblName = (Label)Panel2.FindControl("LblName");
-                //Label lblNUm = (Label)Panel2.FindControl("LabelMobi");
-                //TextBox textPol = (TextBox)Panel2.FindControl("Txtboxpol");
-                //Label SentDate = (Label)Panel2.FindControl("LblDate");
+                Label lblName = (Label)Panel2.FindControl("LblName");
+                Label lblNUm = (Label)Panel2.FindControl("LabelMobi");
+                TextBox textPol = (TextBox)Panel2.FindControl("Txtboxpol");
+                Label SentDate = (Label)Panel2.FindControl("LblDate");
 
+                /*
+                string cname = "";
+                string cnum = "";
+                string polNum = "";
+                string csendDate = "";
+                */
 
-                //string cname = "";
-                //string cnum = "";
-                //string polNum = "";
-                //string csendDate = "";
+                string[] array = new string[3];
 
+                string polNum = textPol.Text.ToString();
 
-                //string[] array = new string[3];
-
-                //polNum = textPol.Text.ToString();
-
-                //array = getCustomerDetails(polNum);
-                //lblName.Text = array[0];
-                //lblNUm.Text = array[1];
-                //SentDate.Text = array[2];
+                array = getCustomerDetails(polNum.Trim());
+                lblName.Text = array[0];
+                lblNUm.Text = array[1];
+                SentDate.Text = array[2];
 
             }
 

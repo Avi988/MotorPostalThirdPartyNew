@@ -9,21 +9,21 @@ using System.Web;
 
 namespace MotorPostalThirdParty.App_Code
 {
-    public class PolicyDetailss
+    public class PolDetails
     {
         OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
 
-       
+
 
         public ThirdPartyCardDTO getCardDetails(string policyNo)
         {
-            
+
             ThirdPartyCardDTO cardDetails = new ThirdPartyCardDTO();
             try
             {
                 conn.Open();
-                string sql =    " SELECT vehprov || ' ' ||vehno, policyno, chasno , CUSTOMER_ID, PI_Prostatus || ' ' || PI_Proname1 || ' ' || PI_Proname2, " +
-                                " PI_Proaddr1, PI_Proaddr2, datcomm, datexit, PI_BRACODE , netprm,TARCODE,  ENTUSER"+
+                string sql = " SELECT vehprov || ' ' ||vehno, policyno, chasno , CUSTOMER_ID, PI_Prostatus || ' ' || PI_Proname1 || ' ' || PI_Proname2, " +
+                                " PI_Proaddr1, PI_Proaddr2, datcomm, datexit, PI_BRACODE , netprm,TARCODE,  ENTUSER" +
                                 " FROM THIRDPARTY.PERSONAL_INFORMATION PI" +
                                 " inner join thirdparty.policy_information PR" +
                                 " on PI.pi_policyno = PR.policyno" +
@@ -140,7 +140,7 @@ namespace MotorPostalThirdParty.App_Code
                     if (String.IsNullOrEmpty(cardDetails.BranchNo))
                     {
 
-                        
+
                         if (cardDetails.BranchNo == "113")
                         {
                             com.Parameters.Clear();
@@ -449,7 +449,7 @@ namespace MotorPostalThirdParty.App_Code
 
                 }
 
-                }
+            }
             catch (Exception ex)
             { }
             finally
@@ -457,10 +457,13 @@ namespace MotorPostalThirdParty.App_Code
                 conn.Close();
             }
 
-             
+
 
 
             return cardDetails;
         }
+
     }
+
+
 }
