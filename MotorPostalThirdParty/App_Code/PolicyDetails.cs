@@ -411,19 +411,19 @@ namespace MotorPostalThirdParty.App_Code
                                             if (string.IsNullOrEmpty(TARIFF_CODE))
                                             {
                                                 cardDetails.CoverList = TARIFF_CODE;
-                                                cardDetails.CoverList1 = "TARIFF CODE";
+                                                
                                             }
                                             else if (string.IsNullOrEmpty(EFFECTIVE_DATE))
                                             {
 
                                                 cardDetails.CoverList = EFFECTIVE_DATE;
-                                                cardDetails.CoverList1 = "EFFECTIVE DATE";
+                                                
 
                                             }
                                             else if (string.IsNullOrEmpty(COVERS))
                                             {
                                                 cardDetails.CoverList = COVERS;
-                                                cardDetails.CoverList1 = "COVERS";
+                                                
                                             }
 
 
