@@ -15,6 +15,7 @@ namespace MotorPostalThirdParty.App_Code
 
         public MTPolicy()
         {
+            PolicyDetails pol = new PolicyDetails();
             //
             // TODO: Add constructor logic here
             //

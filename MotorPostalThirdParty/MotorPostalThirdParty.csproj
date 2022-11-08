@@ -117,6 +117,7 @@
     <Content Include="js\jquery.blockUI.js" />
     <Content Include="js\script.js" />
     <Content Include="Style.css" />
+    <Content Include="TestPage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -125,6 +126,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\MTPolicy.cs" />
+    <Compile Include="TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
     <Content Include="App_Code\RefDetails.cs" />
     <Content Include="App_Code\PolicyDetails.cs" />
     <Compile Include="DTO\CustomerDetails.cs" />
