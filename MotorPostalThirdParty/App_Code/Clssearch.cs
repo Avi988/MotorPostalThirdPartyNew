@@ -253,6 +253,7 @@ namespace MotorPostalThirdParty
                     //third.MobiNo[0].Rows[i].ItemArray[6].ToString());
 
                 }
+                reader_1.Close();
                 conn.Close();
                 dtpol = dt;
 

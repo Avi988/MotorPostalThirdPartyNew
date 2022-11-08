@@ -27,6 +27,7 @@
         {
             color: #000000;
             padding: 8px 0px 0px 0px;
+            
             margin: 0px auto;
             text-align: center;
             line-height: normal;

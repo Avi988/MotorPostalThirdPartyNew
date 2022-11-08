@@ -33,15 +33,15 @@ namespace MotorPostalThirdParty.DTO
         public double RsValue { get; set; }
         public string SN { get; set; }
         public string CoverList { get; set; }
-        public string CoverList1 { get; set; }
+       
         public string ID2 { get; set; }
-        public string IDLabel2 { get; set; }
+        
         public string ID3 { get; set; }
-        public string IDLabel3 { get; set; }
+        
         public string ID4 { get; set; }
-        public string IDLabel4 { get; set; }
+        
         public string ID5 { get; set; }
-        public string IDLabel5 { get; set; }
+       
         public Int32 Seq_No { get; set; }
         public string Is_Send { get; set; }
         public string Send_User { get; set; }
