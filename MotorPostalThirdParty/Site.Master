@@ -78,8 +78,8 @@
 
                 <div id="menu2">
                     <ul>
-                        <li><a href="buldchild.aspx" runat="server">Bulk</a></li>
-                        <li><a href="Individualchild.aspx" runat="server">Individual</a></li> 
+                        <li><a href="frmBulkSMS.aspx" runat="server">TP E-Certificate</a></li>
+                        <li><a href="FormIndividual.aspx" runat="server">Resend TP E-Certificate</a></li> 
                     </ul>
 
                 </div>

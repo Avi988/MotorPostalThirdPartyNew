@@ -98,7 +98,7 @@
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style4" style="color:#0000CD" >
                         <asp:Label runat="server" Text="Policy No :" ID="pol_No"></asp:Label>
-                        <asp:TextBox ID="Txtboxpol" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="Txtboxpol" runat="server" OnTextChanged="Txtboxpol_TextChanged"></asp:TextBox>
                     </td>
                     <td rowspan="3">&nbsp;</td>
                 </tr>
@@ -184,7 +184,7 @@
         <tr>
           <td>
 
-             <asp:GridView ID="grv_MatchingVehicleNo" runat="server" AutoGenerateColumns="false" Width="304px"
+             <asp:GridView ID="grv_MatchingVehicleNo" runat="server" AutoGenerateColumns="False" Width="304px"
                         Height="16px">
                         <Columns>
 <%--                            <asp:TemplateField HeaderText=" Matching Manual PR Nos" HeaderStyle-ForeColor="#ffffff"
@@ -194,12 +194,16 @@
                                         Text='<%# Eval("Manual PR Nos") %>' HorizontalAlign="Center"></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>--%>
-                                         <asp:BoundField HeaderText="Audit" DataField="VEHICLE_NOS" SortExpression="Matching Vehicle Nos"
+                                         <asp:BoundField HeaderText="Vehicle No" DataField="VEHICLE_NO" SortExpression="VEHICLE_NO"
                                            HeaderStyle-ForeColor="#ffffff" HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false">
+<HeaderStyle BackColor="SteelBlue" Font-Bold="False" ForeColor="White"></HeaderStyle>
+
                                             <ItemStyle HorizontalAlign="Center" ForeColor="#000000"></ItemStyle>
                                         </asp:BoundField>
-                            <asp:BoundField HeaderText="Date" DataField="VEHICLE_NOS" SortExpression="Matching Vehicle Nos"
+                            <asp:BoundField HeaderText="MobileNo" DataField="MOBILE_NO" SortExpression="MOBILE_NO"
                                            HeaderStyle-ForeColor="#ffffff" HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false">
+<HeaderStyle BackColor="SteelBlue" Font-Bold="False" ForeColor="White"></HeaderStyle>
+
                                             <ItemStyle HorizontalAlign="Center" ForeColor="#000000"></ItemStyle>
                                         </asp:BoundField>
                              <%--<asp:TemplateField HeaderText="Date" HeaderStyle-ForeColor="#ffffff"
@@ -209,6 +213,7 @@
                                         Text='<%# Eval("receiptNo") %>' HorizontalAlign="Center"></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>--%>
+                            <asp:BoundField DataField="SMS_DT" HeaderText="SMS Date" SortExpression="SMS_DT" />
                         </Columns>
                     </asp:GridView>
 

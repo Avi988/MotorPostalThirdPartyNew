@@ -123,16 +123,52 @@
     </Content>
     <Content Include="buldchild.aspx" />
     <Content Include="Individualchild.aspx" />
+    <Content Include="frmBulkSMS.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="SessionTrans.aspx" />
+    <Content Include="FormIndividual.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\MTPolicy.cs" />
     <Compile Include="App_Code\PolDetails.cs" />
+    <Compile Include="App_Code\Clssearch.cs" />
+    <Content Include="App_Code\Resendclass.cs" />
+    <Compile Include="FormIndividual.aspx.cs">
+      <DependentUpon>FormIndividual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormIndividual.aspx.designer.cs">
+      <DependentUpon>FormIndividual.aspx</DependentUpon>
+    </Compile>
+    <Content Include="App_Code\Search.cs" />
+    <Compile Include="DTO\ThirdPartySMSDTO.cs" />
     <Compile Include="Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBulkSMS.aspx.cs">
+      <DependentUpon>frmBulkSMS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBulkSMS.aspx.designer.cs">
+      <DependentUpon>frmBulkSMS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionTrans.aspx.cs">
+      <DependentUpon>SessionTrans.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionTrans.aspx.designer.cs">
+      <DependentUpon>SessionTrans.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\RefDetails.cs" />
     <Compile Include="App_Code\PolicyDetails.cs" />

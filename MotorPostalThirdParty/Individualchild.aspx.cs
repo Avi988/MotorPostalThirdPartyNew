@@ -279,7 +279,7 @@ namespace MotorPostalThirdParty
             string msg = getAuditDate(gridView);
 
 
-            if (Txtboxpol.Text.Trim() != "")
+            if (string.IsNullOrEmpty(Txtboxpol.Text.Trim()))
             {
   
                 this.Polmsg.Visible = true;
@@ -315,9 +315,9 @@ namespace MotorPostalThirdParty
 
         }
 
-        
+        protected void Txtboxpol_TextChanged(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }
