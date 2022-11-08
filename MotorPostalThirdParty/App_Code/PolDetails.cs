@@ -9,21 +9,21 @@ using System.Web;
 
 namespace MotorPostalThirdParty.App_Code
 {
-    public class PolicyDetailss
+    public class PolDetails
     {
         OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
 
-       
+
 
         public ThirdPartyCardDTO getCardDetails(string policyNo)
         {
-            
+
             ThirdPartyCardDTO cardDetails = new ThirdPartyCardDTO();
             try
             {
                 conn.Open();
-                string sql =    " SELECT vehprov || ' ' ||vehno, policyno, chasno , CUSTOMER_ID, PI_Prostatus || ' ' || PI_Proname1 || ' ' || PI_Proname2, " +
-                                " PI_Proaddr1, PI_Proaddr2, datcomm, datexit, PI_BRACODE , netprm,TARCODE,  ENTUSER"+
+                string sql = " SELECT vehprov || ' ' ||vehno, policyno, chasno , CUSTOMER_ID, PI_Prostatus || ' ' || PI_Proname1 || ' ' || PI_Proname2, " +
+                                " PI_Proaddr1, PI_Proaddr2, datcomm, datexit, PI_BRACODE , netprm,TARCODE,  ENTUSER" +
                                 " FROM THIRDPARTY.PERSONAL_INFORMATION PI" +
                                 " inner join thirdparty.policy_information PR" +
                                 " on PI.pi_policyno = PR.policyno" +
@@ -140,7 +140,7 @@ namespace MotorPostalThirdParty.App_Code
                     if (String.IsNullOrEmpty(cardDetails.BranchNo))
                     {
 
-                        
+
                         if (cardDetails.BranchNo == "113")
                         {
                             com.Parameters.Clear();
@@ -261,7 +261,6 @@ namespace MotorPostalThirdParty.App_Code
 
                                 //sql = "select ENTUSER from thirdparty.policy_information" +
                                 //      "where policy_no = policy_no";
-                                com = new OracleCommand(sql, conn);
 
                                 OracleParameter RefNo = new OracleParameter();
                                 RefNo.Value = policyNo;
@@ -322,11 +321,10 @@ namespace MotorPostalThirdParty.App_Code
                             {
 
                                 com.Parameters.Clear();
-                                sql = "Select * From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = :BRANCH_CODE";
-                                com = new OracleCommand(sql, conn);
+                                sql = "Select * From THIRDPARTY.CERTIFICATE_CADE_SEQ Where BRANCH_CODE = '10'";
 
                                 OracleParameter SNno = new OracleParameter();
-                                SNno.Value = branchCode;// policyNo;
+                                SNno.Value = policyNo;
                                 SNno.ParameterName = "BRANCH_CODE";
 
                                 com.Parameters.Add(SNno);
@@ -372,18 +370,17 @@ namespace MotorPostalThirdParty.App_Code
                             {
 
                                 com.Parameters.Clear();
-                                //sql = "select TARCODE,POLICYNO" +
-                                //      "from thirdparty.policy_information" +
-                                //      "where POLICYNO = '" + policyNo + "'" +
-                                //      "and ENTDATE >= To_date('01-01-2022','dd-MM-yyyy') order by ENTERED_DATE";
+                                sql = "select TARCODE,POLICYNO" +
+                                      "from thirdparty.policy_information" +
+                                      "where POLICYNO = '" + policyNo + "'" +
+                                      "and ENTDATE >= To_date('01-01-2022','dd-MM-yyyy') order by ENTERED_DATE";
 
                                 sql = "SELECT COVERS" +
                                       "FROM THIRDPARTY.TBLBASICRATE" +
-                                      "WHERE trim(TARIFF_CODE) = :tariff_code";//+
-                                      //"--order by effective_date desc";
+                                      "WHERE trim(TARIFF_CODE) = :tariff_code" +
+                                      "order by effective_date desc";
 
                                 com = new OracleCommand(sql, conn);
-                                com.Parameters.Clear();
 
                                 OracleParameter CoverNo = new OracleParameter();
                                 CoverNo.Value = cardDetails.TariffCode;
@@ -394,58 +391,50 @@ namespace MotorPostalThirdParty.App_Code
                                 OracleDataReader reader_5 = com.ExecuteReader();
                                 while (reader_5.Read())
                                 {
-
-                                    if (reader_5[0] != null)
+                                    if (reader_5[3].ToString().Trim() == "B")
                                     {
-                                        cardDetails.CoverList = reader_5[0].ToString();
+                                        string TARIFF_CODE = "";
+                                        string EFFECTIVE_DATE = "";
+                                        string COVERS = "";
+
+                                        if (reader_5[0] != null)
+                                            TARIFF_CODE = reader_5[0].ToString().Trim();
+                                        if (reader_5[1] != null)
+                                            EFFECTIVE_DATE = reader_5[1].ToString().Trim();
+
+                                        if (reader_5[2] != null)
+                                            COVERS = reader_5[2].ToString().Trim();
+
+
+                                        if (!String.IsNullOrEmpty(TARIFF_CODE) || !String.IsNullOrEmpty(EFFECTIVE_DATE) || !String.IsNullOrEmpty(COVERS))
+                                        {
+                                            if (string.IsNullOrEmpty(TARIFF_CODE))
+                                            {
+                                                cardDetails.CoverList = TARIFF_CODE;
+                                                cardDetails.CoverList1 = "TARIFF CODE";
+                                            }
+                                            else if (string.IsNullOrEmpty(EFFECTIVE_DATE))
+                                            {
+
+                                                cardDetails.CoverList = EFFECTIVE_DATE;
+                                                cardDetails.CoverList1 = "EFFECTIVE DATE";
+
+                                            }
+                                            else if (string.IsNullOrEmpty(COVERS))
+                                            {
+                                                cardDetails.CoverList = COVERS;
+                                                cardDetails.CoverList1 = "COVERS";
+                                            }
+
+
+                                        }
+
+
+
                                         break;
                                     }
 
-                                    #region Commented
-                                    //if (reader_5[3].ToString().Trim() == "B")
-                                    //{
-                                    //    string TARIFF_CODE = "";
-                                    //    string EFFECTIVE_DATE = "";
-                                    //    string COVERS = "";
 
-                                    //    if (reader_5[0] != null)
-                                    //        TARIFF_CODE = reader_5[0].ToString().Trim();
-                                    //    if (reader_5[1] != null)
-                                    //        EFFECTIVE_DATE = reader_5[1].ToString().Trim();
-
-                                    //    if (reader_5[2] != null)
-                                    //        COVERS = reader_5[2].ToString().Trim();
-
-
-                                    //    if (!String.IsNullOrEmpty(TARIFF_CODE) || !String.IsNullOrEmpty(EFFECTIVE_DATE) || !String.IsNullOrEmpty(COVERS))
-                                    //    {
-                                    //        if (string.IsNullOrEmpty(TARIFF_CODE))
-                                    //        {
-                                    //            cardDetails.CoverList = TARIFF_CODE;
-                                    //            cardDetails.CoverList1 = "TARIFF CODE";
-                                    //        }
-                                    //        else if (string.IsNullOrEmpty(EFFECTIVE_DATE))
-                                    //        {
-
-                                    //            cardDetails.CoverList = EFFECTIVE_DATE;
-                                    //            cardDetails.CoverList1 = "EFFECTIVE DATE";
-
-                                    //        }
-                                    //        else if (string.IsNullOrEmpty(COVERS))
-                                    //        {
-                                    //            cardDetails.CoverList = COVERS;
-                                    //            cardDetails.CoverList1 = "COVERS";
-                                    //        }
-
-
-                                    //    }
-
-
-
-                                    //    break;
-                                    //}
-
-                                    #endregion
 
 
 
@@ -460,7 +449,7 @@ namespace MotorPostalThirdParty.App_Code
 
                 }
 
-                }
+            }
             catch (Exception ex)
             { }
             finally
@@ -468,10 +457,13 @@ namespace MotorPostalThirdParty.App_Code
                 conn.Close();
             }
 
-             
+
 
 
             return cardDetails;
         }
+
     }
+
+
 }

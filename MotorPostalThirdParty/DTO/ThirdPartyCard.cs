@@ -406,7 +406,7 @@ namespace MotorPostalThirdParty.DTO
         //}
 
         
-        public ThirdPartyCard getPolicyDetails(string policyNo,string policyYear,string branch_code,string Cus_ID,string Company_Reg_No)
+        public string getPolicyDetails(string policyNo,string policyYear,string branch_code,string Cus_ID,string Company_Reg_No)
         {
             //OracleCommand cmd = new OracleCommand();
             string mesg = "success";
@@ -433,11 +433,10 @@ namespace MotorPostalThirdParty.DTO
 
                 //cmd = new OracleCommand(sql, oconn);
 
-                OracleDataReader reader = cmd.ExecuteReader();
-
                 using (OracleCommand cmd = new OracleCommand(sql, oconn))
                 {
                     OracleDataAdapter data = new OracleDataAdapter();
+                    OracleDataReader reader = cmd.ExecuteReader();
 
                     data.SelectCommand = cmd;
 
