@@ -277,6 +277,7 @@ namespace MotorPostalThirdParty.App_Code
 
                                         string BOOK_NO = "";
                                         string ENTUSER = "";
+                                        string RECNO = ""; // Fill this too
 
                                         if (reader_4[0] != null)
                                             BOOK_NO = reader_4[0].ToString().Trim();
@@ -297,21 +298,8 @@ namespace MotorPostalThirdParty.App_Code
                                             }
                                         }
                                     }
-
-
-
-
-
-
                                 }
-
-
-
                             }
-
-
-
-
                         }
 
 

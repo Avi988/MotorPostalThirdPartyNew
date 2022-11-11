@@ -201,7 +201,7 @@ namespace MotorPostalThirdParty.App_Code
 
                             sql = "select branch_code,seq_no" +
                                   "from THIRDPARTY.CERTIFICATE_CADE_SEQ" +
-                                  "where branch_code = '11'";
+                                  "where branch_code = :branch_code";
 
                             com = new OracleCommand(sql, conn);
 
