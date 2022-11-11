@@ -6,7 +6,7 @@
 
 
 
-        $(function () {
+            $(function () {
             today = new Date();
             var month, day, year;
             year = today.getFullYear();
@@ -23,10 +23,7 @@
 
     </script>
     <style type="text/css">
-        .auto-style1 {
-            width: 79%;
-        }
-    .auto-style2 {
+        .auto-style2 {
         width: 762px;
     }
     .auto-style3 {
@@ -53,11 +50,18 @@
     .auto-style17 {
         color: #FF0000;
     }
+    .auto-style18 {
+        width: 106px;
+        height: 473px;
+    }
+        .auto-style19 {
+            width: 592px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="auto-style2">
-    <table class="auto-style1">
+    <div class="auto-style19">
+    <table class="auto-style18">
         <tr>
             <td class="auto-style4">&nbsp;</td>
             <td>&nbsp;</td>
@@ -180,7 +184,9 @@
             <td class="auto-style4">&nbsp;</td>
             <td>
                 &nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:Button ID="SendSMS" runat="server" OnClick="Button1_Click" Text="Send SMS" />
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>

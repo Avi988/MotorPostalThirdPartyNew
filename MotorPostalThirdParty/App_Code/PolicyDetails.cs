@@ -177,12 +177,12 @@ namespace MotorPostalThirdParty.App_Code
                                         if (String.IsNullOrEmpty(PNAME))
                                         {
                                             cardDetails.ID = PNAME;
-                                            //cardDetails.IDLabel = "P_Name";
+                                            
                                         }
                                         else if (String.IsNullOrEmpty(PCODE))
                                         {
                                             cardDetails.ID = PCODE;
-                                            //cardDetails.IDLabel = "P_CODE";
+                                            
                                         }
                                     }
                                 }
@@ -229,12 +229,12 @@ namespace MotorPostalThirdParty.App_Code
                                         if (String.IsNullOrEmpty(BRANCH_CODE))
                                         {
                                             cardDetails.ID3 = BRANCH_CODE;
-                                            //cardDetails.IDLabel3 = "Branch code";
+                                            
                                         }
                                         else if (String.IsNullOrEmpty(SEQ_NO))
                                         {
                                             cardDetails.ID3 = SEQ_NO;
-                                            //cardDetails.IDLabel3 = "seq no";
+                                            
                                         }
                                     }
                                 }
@@ -288,12 +288,12 @@ namespace MotorPostalThirdParty.App_Code
                                             if (String.IsNullOrEmpty(BOOK_NO))
                                             {
                                                 cardDetails.ID4 = BOOK_NO;
-                                                //cardDetails.IDLabel4 = "Book No";
+                                                
                                             }
                                             else if (String.IsNullOrEmpty(ENTUSER))
                                             {
                                                 cardDetails.ID4 = ENTUSER;
-                                                //cardDetails.IDLabel4 = "Ent User";
+                                               
                                             }
                                         }
                                     }
@@ -351,7 +351,7 @@ namespace MotorPostalThirdParty.App_Code
                                             if (String.IsNullOrEmpty(BRANCH_CODE))
                                             {
                                                 cardDetails.ID5 = BRANCH_CODE;
-                                                //cardDetails.IDLabel5 = "Book No";
+                                                
                                             }
 
                                         }

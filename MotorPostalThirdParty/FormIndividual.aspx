@@ -49,7 +49,9 @@
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>
+            <asp:TextBox ID="txtboxMobile" runat="server" CssClass="auto-style4" Height="20px" Width="125px"></asp:TextBox>
+        </td>
     </tr>
     <tr>
         <td>&nbsp;</td>
@@ -134,7 +136,9 @@
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>
+            <asp:Button ID="btnSend" runat="server" OnClick="btnSend_Click" Text="Send" />
+        </td>
     </tr>
 </table>
 </asp:Content>

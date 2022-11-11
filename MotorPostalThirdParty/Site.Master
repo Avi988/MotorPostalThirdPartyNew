@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MotorPostalThirdParty.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="MotorPostalThirdParty.Site" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -53,7 +53,20 @@
             color:var(--color-white);
             text-decoration:none;
             font-size:15px;
-            
+            width:auto;
+        }
+        
+        
+        
+        .auto-style4 {
+            height: 45px;
+            width: 799px;
+        }
+        
+        
+        
+        .auto-style5 {
+            width: 500px;
         }
         
         
@@ -78,16 +91,19 @@
                 </h1>
 
                 <div id="menu2">
-                    <ul>
-                        <li><a href="frmBulkSMS.aspx" runat="server">TP E-Certificate</a></li>
-                        <li><a href="FormIndividual.aspx" runat="server">Resend TP E-Certificate</a></li> 
+                    <ul class="auto-style4">
+                        <li class="auto-style5" style="width: 180px; height: 22px"><a href="frmBulkSMS.aspx" runat="server"> TP E-Certificate </a></li>
+                        <li style="width: 180px; height: 22px"><a href="FormIndividual.aspx" runat="server" class="auto-style2">Resend TP E-Certificate</a></li> 
+
+                       <%-- <li class="auto-style3"><a href="frmBulkSMS.aspx" runat="server" class="auto-style1">TP E-Certificate</a></li>
+                        <li><a href="FormIndividual.aspx" runat="server" class="auto-style2">Resend TP E-Certificate</a></li> --%>
+                     <%--<li class="auto-style3"><a href="frmBulkSMS.aspx" runat="server" class="auto-style1">TP E-Certificate</a></li>
+                        <li><a href="FormIndividual.aspx" runat="server" class="auto-style2">Resend TP E-Certificate</a></li> 
+                    --%>
                     </ul>
 
                 </div>
-
-                
-
-                   
+                 
                     <!--<div class="menu2">
                     <ul>
                         <li><a href="#">Bulk</a></li>
