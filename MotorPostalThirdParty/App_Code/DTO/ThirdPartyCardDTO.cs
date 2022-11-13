@@ -20,7 +20,7 @@ namespace MotorPostalThirdParty.DTO
         public string RefNo { get; set; }
         public double Amount { get; set; }
         public string SerialNo { get; set; }
-        public string Covers { get; set; }
+        public string NIC_label { get; set; }
 
         public Int64 CustomerID { get; set; }
         public string BranchNo { get; set; }

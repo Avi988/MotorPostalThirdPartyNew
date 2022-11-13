@@ -470,10 +470,10 @@ public class PolicyDetailss
 
         string sql =  "INSERT INTO SLIC.NET.THIRDPARTYINFO" +
         "(IS_SEND, SEND_USER, SEND_IP, IS_RESEND, ENTRY_DATE, ENTRY_EPF, MOBILENO, VEHCLENO, POLICYNO, NICNO, CHASSINO, CUS_NAME," +
-        "ADDRESS1, ADDRESS2, COMMENCEMENTDATE, EXPIRYTDATE,PLACE, REFNO, AMOUNT, SERIALNO, COVERS, CUSTOMER_ID, BRANCHNO, TARIFFCODE, ENTRYUSER, " +
+        "ADDRESS1, ADDRESS2, COMMENCEMENTDATE, EXPIRYTDATE,PLACE, REFNO, AMOUNT, SERIALNO, NIC_LABEL, CUSTOMER_ID, BRANCHNO, TARIFFCODE, ENTRYUSER, " +
         "PO_CODE, RSVALUE, SN, COVERLIST) values " +
         " ('N', :Send_User, :Send_IP, 'N', sysdate, :entryEPF, :mobileNo, :vehilceNo, :policyNo, :nicNo, :chassisNo, :cusName, :address1, :address2, :comDate, :expDate, :place, " +
-        " :refNo, :amount, :serialNo, :covers, :cusmerId, :branchNo, :tarifCode, :pocode, :RsValue, :SN, :coverList) ";
+        " :refNo, :amount, :serialNo, :nic_lbl, :cusmerId, :branchNo, :tarifCode, :pocode, :RsValue, :SN, :coverList) ";
 
 
         OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
@@ -558,8 +558,8 @@ public class PolicyDetailss
             opserialNo.ParameterName = "serialNo";
 
             OracleParameter opcovers = new OracleParameter();
-            opcovers.Value = card.Covers;
-            opcovers.ParameterName = "covers";
+            opcovers.Value = card.NIC_label;
+            opcovers.ParameterName = "nic_lbl";
 
             OracleParameter opcusmerId = new OracleParameter();
             opcusmerId.Value = card.CustomerID;
