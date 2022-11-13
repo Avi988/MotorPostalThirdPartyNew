@@ -2,13 +2,10 @@
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
-
 using Newtonsoft.Json;
 
 
-namespace MotorPostalThirdParty.App_Code
-{
+
     public class APICaller
     {
         public async Task<int> PostBulkDoc(DocumentEntryDTO Entry)
@@ -44,4 +41,3 @@ namespace MotorPostalThirdParty.App_Code
 
         }
     }
-}
