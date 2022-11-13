@@ -6,8 +6,7 @@ using System.Data.OracleClient;
 using System.Linq;
 using System.Web;
 
-namespace MotorPostalThirdParty.App_Code
-{
+
     public class MTPolicy
     {
         OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
@@ -15,7 +14,7 @@ namespace MotorPostalThirdParty.App_Code
 
         public MTPolicy()
         {
-            PolicyDetails pol = new PolicyDetails();
+            //PolicyDetails pol = new PolicyDetails();
             //
             // TODO: Add constructor logic here
             //
@@ -23,4 +22,3 @@ namespace MotorPostalThirdParty.App_Code
 
         
     }
-}

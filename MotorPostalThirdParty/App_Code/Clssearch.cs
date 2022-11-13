@@ -158,7 +158,7 @@ namespace MotorPostalThirdParty
             {
 
                 string sql = "select  pi.pi_policyno, pi_bracode  ,trim(PI.pi_prostatus) || trim(pi.pi_proname1) || ' ' || trim(pi.pi_proname2)," +
-                             " p.vehno,p.netprm,p.datcomm" +
+                             " p.vehno,p.netprm,p.datcomm, pi.pi_teleno" +
                              " from thirdparty.personal_information PI inner join  thirdparty.policy_information P" +
                              " ON PI.pi_policyno = P.policyno" +
                              " WHERE to_char(p.datcomm,'yyyy/mm/dd')>= :fromDt" +

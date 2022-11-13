@@ -157,14 +157,27 @@
         <tr>
             <td class="auto-style4">&nbsp;</td>
             <td colspan="2">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Height="63px" Width="121px">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  >
                         <Columns>
                             <asp:BoundField HeaderText="Policy No" DataField="PolicyNo" SortExpression="PolicyNo" />
                             <asp:BoundField HeaderText="Vehicle No" DataField="VeicleNo" SortExpression="VeicleNo" />
                             <asp:BoundField HeaderText="Premium" DataField="Premium" SortExpression="Premium" />
                             <asp:BoundField HeaderText="EntryDate" DataField="Entry_Date" SortExpression="Entry_Date" />
-                            <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" SortExpression="MobileNo" />
+                            <%--<asp:BoundField HeaderText="Mobile No" DataField="MobileNo" SortExpression="MobileNo" />--%>
                             <asp:BoundField HeaderText="Name" DataField="Name" SortExpression="Name" />
+
+                            <asp:TemplateField HeaderText="Mobile No" SortExpression="MobileNo">
+  <EditItemTemplate>
+    <asp:TextBox ID="txtMobile" runat="server"
+        Text='<%# Bind("MobileNo") %>'></asp:TextBox>
+  </EditItemTemplate>
+  <ItemTemplate>
+  <asp:TextBox ID="txtMobileE" runat="server"
+        Text='<%# Bind("MobileNo") %>'></asp:TextBox>
+  </ItemTemplate>
+ </asp:TemplateField>
+
+
                             <asp:TemplateField HeaderText="SMS">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
