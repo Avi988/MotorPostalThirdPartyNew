@@ -15,6 +15,7 @@ namespace MotorPostalThirdParty
         OracleConnection oconn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
 
         OraDB db = new OraDB();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -115,6 +116,44 @@ namespace MotorPostalThirdParty
             //GridView1.DataBind();
             
             
+
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string PolicyNo = "";
+            string vehNo = "";
+            var netprm = 0.00;
+            string Datcomm = "";
+            string MobiNo = "";
+            string Proname1 = "";
+            var Bracode = "";
+
+
+            //dm.begintransaction();
+
+            //PolicyNo = long.Parse(GridView1.Rows[rowcnt].Cells[0].Text.Trim());
+            //vehNo = long.Parse(GridView1.Rows[rowcnt].Cells[1].Text.Trim());
+            //netprm = long.Parse(GridView1.Rows[rowcnt].Cells[2].Text.Trim());
+            //Datcomm = long.Parse(GridView1.Rows[rowcnt].Cells[3].Text.Trim());
+            //MobiNo = long.Parse(GridView1.Rows[rowcnt].Cells[4].Text.Trim());
+            //Proname1 = long.Parse(GridView1.Rows[rowcnt].Cells[5].Text.Trim());
+            //Bracode = long.Parse(GridView1.Rows[rowcnt].Cells[6].Text.Trim());
+
+            string UpdateDRConfirm = "";
+
+            //UpdateDRConfirm = "INSERT INTO SLIC.NET.THIRDPARTYINFO (POLNO, PROPNO, POLDT, DR_COMPDT, DR_COMPEPF, DR_COMPBR, DR_COMPIP, DR_COMP_TIME," +
+            //                         " DRCOMP_YN, DR_LOT_NO, POST_ORDER, POL_CATEGORY, TBLE,COM_CORR,HO_BR)" +
+            //                         " VALUES(" + polno + ", " + propno + ", to_date('" + poldt + "','yyyy/mm/dd'), sysdate,  '" + Postepf + "'," +
+            //                         " " + postbr + ", '" + RcvIP + "', '" + Rcvtime + "', 'Y', '" + cnf_lotno + "', " + postOrder + ", " + PolCategory + ", " + table + ",'CM','BR')";
+
+
+            UpdateDRConfirm = " INSERT INTO SLIC.NET.THIRDPARTYINFO(POLICYNO, VEHCLENO, AMOUNT, EXPIRYTDATE, MOBILENO, CUS_NAME) VALUES" +
+                              " (" + PolicyNo + ", " + vehNo+ ", " + netprm + ", to_date('" + Datcomm + "', 'yyyy/mm/dd'), " + MobiNo + ", " + Proname1 + ")";
+
+
+            //int i = dm.insertRecords(UpdateDRConfirm);
 
 
         }

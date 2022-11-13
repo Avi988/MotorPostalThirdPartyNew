@@ -109,12 +109,12 @@ namespace MotorPostalThirdParty.App_Code
                                     if (String.IsNullOrEmpty(NIC))
                                     {
                                         cardDetails.ID = PPNO;
-                                        cardDetails.IDLabel = "PP No";
+                                        //cardDetails.IDLabel = "PP No";
                                     }
                                     else if (String.IsNullOrEmpty(PPNO))
                                     {
                                         cardDetails.ID = NIC;
-                                        cardDetails.IDLabel = "NIC No";
+                                        //cardDetails.IDLabel = "NIC No";
                                     }
                                 }
                             }
@@ -128,7 +128,7 @@ namespace MotorPostalThirdParty.App_Code
                                 if (String.IsNullOrEmpty(BRNO))
                                 {
                                     cardDetails.ID = BRNO;
-                                    cardDetails.IDLabel = "BR No";
+                                    //cardDetails.IDLabel = "BR No";
                                 }
                             }
 
@@ -149,6 +149,7 @@ namespace MotorPostalThirdParty.App_Code
                                     "inner " +
                                     "join POSTOFFICE.POST_OFFICE P ON t.po_code = p.po_code " +
                                     "where t.policy_no = :policy_num";
+
                             com = new OracleCommand(sql, conn);
 
                             OracleParameter oppo = new OracleParameter();
@@ -176,12 +177,12 @@ namespace MotorPostalThirdParty.App_Code
                                         if (String.IsNullOrEmpty(PNAME))
                                         {
                                             cardDetails.ID = PNAME;
-                                            cardDetails.IDLabel = "P_Name";
+                                            
                                         }
                                         else if (String.IsNullOrEmpty(PCODE))
                                         {
                                             cardDetails.ID = PCODE;
-                                            cardDetails.IDLabel = "P_CODE";
+                                            
                                         }
                                     }
                                 }
@@ -228,12 +229,12 @@ namespace MotorPostalThirdParty.App_Code
                                         if (String.IsNullOrEmpty(BRANCH_CODE))
                                         {
                                             cardDetails.ID3 = BRANCH_CODE;
-                                            cardDetails.IDLabel3 = "Branch code";
+                                            
                                         }
                                         else if (String.IsNullOrEmpty(SEQ_NO))
                                         {
                                             cardDetails.ID3 = SEQ_NO;
-                                            cardDetails.IDLabel3 = "seq no";
+                                            
                                         }
                                     }
                                 }
@@ -259,11 +260,10 @@ namespace MotorPostalThirdParty.App_Code
 
                                 com = new OracleCommand(sql, conn);
 
-                                //sql = "select ENTUSER from thirdparty.policy_information" +
-                                //      "where policy_no = policy_no";
-                                com = new OracleCommand(sql, conn);
+                                
 
                                 OracleParameter RefNo = new OracleParameter();
+
                                 RefNo.Value = policyNo;
                                 RefNo.ParameterName = "policy_no";
 
@@ -289,12 +289,12 @@ namespace MotorPostalThirdParty.App_Code
                                             if (String.IsNullOrEmpty(BOOK_NO))
                                             {
                                                 cardDetails.ID4 = BOOK_NO;
-                                                cardDetails.IDLabel4 = "Book No";
+                                                
                                             }
                                             else if (String.IsNullOrEmpty(ENTUSER))
                                             {
                                                 cardDetails.ID4 = ENTUSER;
-                                                cardDetails.IDLabel4 = "Ent User";
+                                               
                                             }
                                         }
                                     }
@@ -340,7 +340,7 @@ namespace MotorPostalThirdParty.App_Code
                                             if (String.IsNullOrEmpty(BRANCH_CODE))
                                             {
                                                 cardDetails.ID5 = BRANCH_CODE;
-                                                cardDetails.IDLabel5 = "Book No";
+                                                
                                             }
 
                                         }
@@ -379,44 +379,45 @@ namespace MotorPostalThirdParty.App_Code
 
                                 com.Parameters.Add(CoverNo);
 
-                                OracleDataReader reader_5 = com.ExecuteReader();
-                                while (reader_5.Read())
+                                OracleDataReader reader_6 = com.ExecuteReader();
+                                while (reader_6.Read())
                                 {
-
-                                    if (reader_5[0] != null)
+                                    if (reader_6[3].ToString().Trim() == "B")
                                     {
-                                        cardDetails.CoverList = reader_5[0].ToString();
-                                        break;
-                                    }
+                                        string TARIFF_CODE = "";
+                                        string EFFECTIVE_DATE = "";
+                                        string COVERS = "";
 
-                                    #region Commented
-                                    //if (reader_5[3].ToString().Trim() == "B")
-                                    //{
-                                    //    string TARIFF_CODE = "";
-                                    //    string EFFECTIVE_DATE = "";
-                                    //    string COVERS = "";
+                                        if (reader_6[0] != null)
+                                            TARIFF_CODE = reader_6[0].ToString().Trim();
+                                        if (reader_6[1] != null)
+                                            EFFECTIVE_DATE = reader_6[1].ToString().Trim();
 
-                                    //    if (reader_5[0] != null)
-                                    //        TARIFF_CODE = reader_5[0].ToString().Trim();
-                                    //    if (reader_5[1] != null)
-                                    //        EFFECTIVE_DATE = reader_5[1].ToString().Trim();
+                                        if (reader_6[2] != null)
+                                            COVERS = reader_6[2].ToString().Trim();
 
                                     //    if (reader_5[2] != null)
                                     //        COVERS = reader_5[2].ToString().Trim();
 
+                                        if (!String.IsNullOrEmpty(TARIFF_CODE) || !String.IsNullOrEmpty(EFFECTIVE_DATE) || !String.IsNullOrEmpty(COVERS))
+                                        {
+                                            if (string.IsNullOrEmpty(TARIFF_CODE))
+                                            {
+                                                cardDetails.CoverList = TARIFF_CODE;
+                                                
+                                            }
+                                            else if (string.IsNullOrEmpty(EFFECTIVE_DATE))
+                                            {
 
-                                    //    if (!String.IsNullOrEmpty(TARIFF_CODE) || !String.IsNullOrEmpty(EFFECTIVE_DATE) || !String.IsNullOrEmpty(COVERS))
-                                    //    {
-                                    //        if (string.IsNullOrEmpty(TARIFF_CODE))
-                                    //        {
-                                    //            cardDetails.CoverList = TARIFF_CODE;
-                                    //            cardDetails.CoverList1 = "TARIFF CODE";
-                                    //        }
-                                    //        else if (string.IsNullOrEmpty(EFFECTIVE_DATE))
-                                    //        {
+                                                cardDetails.CoverList = EFFECTIVE_DATE;
+                                                
 
-                                    //            cardDetails.CoverList = EFFECTIVE_DATE;
-                                    //            cardDetails.CoverList1 = "EFFECTIVE DATE";
+                                            }
+                                            else if (string.IsNullOrEmpty(COVERS))
+                                            {
+                                                cardDetails.CoverList = COVERS;
+                                                
+                                            }
 
                                     //        }
                                     //        else if (string.IsNullOrEmpty(COVERS))

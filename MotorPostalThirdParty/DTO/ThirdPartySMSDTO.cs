@@ -19,6 +19,8 @@ namespace MotorPostalThirdParty.DTO
         public string fromDate { get; set; }
         public string toDate { get; set; }
         public string Datcomm { get; set; }
+       
+         
         
 
         public DataTable dtSMS=new DataTable();

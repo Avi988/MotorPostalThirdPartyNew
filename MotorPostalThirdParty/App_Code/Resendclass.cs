@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.OracleClient;
 using System.Linq;
 using System.Web;
@@ -10,13 +11,14 @@ namespace MotorPostalThirdParty.App_Code
     public class Resendclass
     {
         OracleConnection conn = new OracleConnection(ConfigurationManager.AppSettings["DBConString"]);
+        public DataTable dtRe = new DataTable();
 
-        //public void  getPolicyDetails(string PolicyNo,  out string Sname, out string mobile)
+        //public void getPolicyDetails(string PolicyNo, out string Sname, out string mobile)
         //{
         //    //Assign the getPolicyDetails 
-             
 
- 
+
+
 
         //    try
         //    {
@@ -41,19 +43,19 @@ namespace MotorPostalThirdParty.App_Code
         //        OracleDataReader reader_1 = com.ExecuteReader();
         //        while (reader_1.Read())
         //        {
-                
+
 
         //            if (reader_1 != null)
         //            {
-        //                Sname= reader_1[0].ToString().Trim();
-                        
+        //                Sname = reader_1[0].ToString().Trim();
+
         //            }
         //            if (reader_1 != null)
         //            {
         //                mobile = reader_1[0].ToString().Trim();
 
         //            }
-                    
+
 
 
         //            //OracleCommand com = new OracleCommand(sql, conn);
@@ -70,7 +72,7 @@ namespace MotorPostalThirdParty.App_Code
         //        }
         //        reader_1.Close();
         //        conn.Close();
-              
+
         //    }
 
 
@@ -84,7 +86,7 @@ namespace MotorPostalThirdParty.App_Code
         //        conn.Close();
         //    }
 
-            
+
 
 
 

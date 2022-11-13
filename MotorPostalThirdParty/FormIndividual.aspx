@@ -49,7 +49,9 @@
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>
+            <asp:TextBox ID="txtboxMobile" runat="server" CssClass="auto-style4" Height="20px" Width="125px"></asp:TextBox>
+        </td>
     </tr>
     <tr>
         <td>&nbsp;</td>
@@ -102,13 +104,13 @@
                                         Text='<%# Eval("Manual PR Nos") %>' HorizontalAlign="Center"></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>--%>
-                                         <asp:BoundField HeaderText="Vehicle No" DataField="VEHICLE_NO" SortExpression="VEHICLE_NO"
+                                         <asp:BoundField HeaderText="Seq No" DataField="Sequence_No" SortExpression="Sequence_No"
                                            HeaderStyle-ForeColor="#ffffff" HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false">
 <HeaderStyle BackColor="SteelBlue" Font-Bold="False" ForeColor="White"></HeaderStyle>
 
                                             <ItemStyle HorizontalAlign="Center" ForeColor="#000000"></ItemStyle>
                                         </asp:BoundField>
-                            <asp:BoundField HeaderText="MobileNo" DataField="MOBILE_NO" SortExpression="MOBILE_NO"
+                            <asp:BoundField HeaderText="IS_Send" DataField="IS_SEND" SortExpression="IS_SEND"
                                            HeaderStyle-ForeColor="#ffffff" HeaderStyle-BackColor="#4682B4" HeaderStyle-Font-Bold="false">
 <HeaderStyle BackColor="SteelBlue" Font-Bold="False" ForeColor="White"></HeaderStyle>
 
@@ -121,7 +123,12 @@
                                         Text='<%# Eval("receiptNo") %>' HorizontalAlign="Center"></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>--%>
-                            <asp:BoundField DataField="SMS_DT" HeaderText="SMS Date" SortExpression="SMS_DT" />
+                            <asp:BoundField DataField="SEND_USER" HeaderText="Send_User" SortExpression="SEND_USER" />
+                            <asp:BoundField DataField="SEND_IP" HeaderText="Send_IP" SortExpression="SEND_IP" />
+                            <asp:BoundField DataField="IS_RESEND" HeaderText="IS_Resend" SortExpression="IS_RESEND" />
+                            <asp:BoundField DataField="ENTRY_DATE" HeaderText="Entry_Date" SortExpression="ENTRY_DATE" />
+                            <asp:BoundField DataField="ENTRY_EPF" HeaderText="Entry_EPF" SortExpression="ENTRY_EPF" />
+                            <asp:BoundField DataField="MOBILE_NO" HeaderText="MobileNo" SortExpression="MOBILE_NO" />
                         </Columns>
                     </asp:GridView>
         </td>
@@ -129,7 +136,9 @@
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>
+            <asp:Button ID="btnSend" runat="server" OnClick="btnSend_Click" Text="Send" />
+        </td>
     </tr>
 </table>
 </asp:Content>
